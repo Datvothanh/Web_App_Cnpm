@@ -1,0 +1,54 @@
+###
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "vothanhdat",
+    "password": "vothanhdat"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "vothanhdat",
+    "password": "vothanhdat"
+}
+
+###
+
+POST http://localhost:5000/api/post
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI4M2IxNDI5MDhmMTI2ZjM2YzkzMDUiLCJpYXQiOjE2NjM1ODQ2ODR9.pysUmGqvu1o50A9o5_nHrUwYY33N631jl22iBywPAcY
+
+{
+    "title": "React",
+    "description": "React",
+    "url": "react.com"
+}
+
+###
+
+GET http://localhost:5000/api/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI4M2IxNDI5MDhmMTI2ZjM2YzkzMDUiLCJpYXQiOjE2NjM1ODQ2ODR9.pysUmGqvu1o50A9o5_nHrUwYY33N631jl22iBywPAcY
+
+
+
+###
+PUT http://localhost:5000/api/post/632849e392e74841948d1147
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI4M2IxNDI5MDhmMTI2ZjM2YzkzMDUiLCJpYXQiOjE2NjM1ODQ2ODR9.pysUmGqvu1o50A9o5_nHrUwYY33N631jl22iBywPAcY
+
+{
+    "title": "Youtube",
+    "description": "Youtube",
+    "url": "youtube.com",
+    "status": "LEARNING"
+}
+
+
+###
+DELETE  http://localhost:3000/api/post/631dcfbac79a83c48abd9f58
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzFjODhiMDkzNjBjOTc0ZjI4Mzk4NmUiLCJpYXQiOjE2NjI4OTk3MzR9.GjOo6nvd0gZOd-ayuz6apx_vJ5GPETm9xJ620XwBXy8
