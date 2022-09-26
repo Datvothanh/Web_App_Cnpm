@@ -4,7 +4,7 @@ import {useContext} from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import NavbarMenu from '../layout/NavbarMenu'
 import NavbarMenuLogout from '../layout/NavbarMenuLogout'
-
+import Header from '../layout/Header/Header'
 
 const ProtectedRoute = () => {
     const {authState: {authLoading, isAuthenticated}} = useContext(AuthContext)
@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
             <Spinner animation='border' variant='info'/>
         </div>
     )
-  return  isAuthenticated ? (<><NavbarMenu/><Outlet /></>) : (<><NavbarMenuLogout/><Outlet /></>)
+  return  isAuthenticated ? (<><NavbarMenu/><Outlet /></>) : (<><Header/><Outlet /></>)
   
 }
 

@@ -1,0 +1,15 @@
+.homePage{
+    @mixin d-flex {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+    .wrap {
+        height: 40px;
+        @include d-flex;
+        .content{
+            justify-content: start;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+.heading {
+	color: #000;
+	background-color: #82CCFF;
+	font-size: 1.4rem;
+	@mixin d-flex {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	a{
+		color: #000;
+		text-decoration: none;
+	}
+	
+	.logo {
+		background-image: url('../../../assets/logo.png');
+		background-size: cover;
+		width: 100px;
+		height: 60px;
+		cursor: pointer;
+	}
+	.top {
+		height: 50px;
+		@include d-flex;
+		.wrap {
+			width: 1200px;
+			height: 40px;
+			@include d-flex;
+			justify-content: space-between;
+		}
+	}
+	.bottom {
+		display: flex;
+		height: 64px;
+		nav {
+			@include d-flex;
+			justify-content: space-between;
+			width: 90%;
+			max-width: 1200px;
+			margin: auto;
+			.item {
+				@include d-flex;
+				gap: 4px;
+			}
+		}
+	}
+}
+#tippy-5{
+    inset: 1px 2px auto 10px!important;
+    margin: -9px!important;
+}
+.tippy-arrow::before{
+    display: none;
+}
