@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
             <Spinner animation='border' variant='info'/>
         </div>
     )
-  return  isAuthenticated ? (<><NavbarMenu/><Outlet /></>) : (<><Header/><Outlet /></>)
+  return  (<><Header/><Outlet /></>)
   
 }
 
