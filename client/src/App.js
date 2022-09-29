@@ -7,15 +7,22 @@ import AuthContextProvider from "./contexts/AuthContext";
 import Dashboard from "./views/Dashboard";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import ProtectedHome from "./components/routing/ProtectedHome"
+import ProductContextProvider from "./contexts/ProductContext";
+import CategoryContextProvider from "./contexts/CategoryContext";
+import ProductByCategoryContextProvider from "./contexts/ProductByCategoryContext";
+import HomeCategoryPage from "./views/Home/HomeCategoryPage";
 function App() {
   return (
     <AuthContextProvider>
-    <Router>
+      <ProductContextProvider>
+      <CategoryContextProvider>
+      <ProductByCategoryContextProvider>
+      <Router>
       <Routes>
         <Route exact path="/" element={<Landing />} />
-
         <Route exact path='/' element={<ProtectedHome/>}>
         <Route exact path="/home" element={<HomePage />} />
+        <Route exact path="/category/:id_category" element={<HomeCategoryPage />} />
         </Route>
         <Route
           exact
@@ -34,8 +41,11 @@ function App() {
           element={<Dashboard />}
         />
         </Route>
-        </Routes>
-    </Router>
+      </Routes>
+     </Router>
+      </ProductByCategoryContextProvider>
+     </CategoryContextProvider>
+     </ProductContextProvider>
     </AuthContextProvider>
   );
 }

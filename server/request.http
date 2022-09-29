@@ -8,7 +8,6 @@ Content-Type: application/json
 }
 
 ###
-
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
@@ -18,19 +17,17 @@ Content-Type: application/json
 }
 
 ###
-
 POST http://localhost:5000/api/post
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI4M2IxNDI5MDhmMTI2ZjM2YzkzMDUiLCJpYXQiOjE2NjM1ODQ2ODR9.pysUmGqvu1o50A9o5_nHrUwYY33N631jl22iBywPAcY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI4M2IxNDI5MDhmMTI2ZjM2YzkzMDUiLCJpYXQiOjE2NjQzMzgwMzR9.nGGrnIBnSWuNebKmzNGmFoGpYFLXY_CRMXDLSSqWq-U
 
 {
-    "title": "React",
-    "description": "React",
+    "title": "React1",
+    "description": "React1",
     "url": "react.com"
 }
 
 ###
-
 GET http://localhost:5000/api/post
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI4M2IxNDI5MDhmMTI2ZjM2YzkzMDUiLCJpYXQiOjE2NjM1ODQ2ODR9.pysUmGqvu1o50A9o5_nHrUwYY33N631jl22iBywPAcY
 
@@ -50,5 +47,39 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzI4M
 
 
 ###
-DELETE  http://localhost:3000/api/post/631dcfbac79a83c48abd9f58
+DELETE  http://localhost:5000/api/post/631dcfbac79a83c48abd9f58
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzFjODhiMDkzNjBjOTc0ZjI4Mzk4NmUiLCJpYXQiOjE2NjI4OTk3MzR9.GjOo6nvd0gZOd-ayuz6apx_vJ5GPETm9xJ620XwBXy8
+
+
+###
+POST http://localhost:5000/api/product
+Content-Type: application/json
+
+{
+    "name": "Oppo A9",
+    "price": "90",
+    "tinyDes": "tốt",
+    "fullDes": "rất tốt",
+    "id_category": "6333d160de37f20e07927141"
+}
+
+
+###
+POST http://localhost:5000/api/category 
+Content-Type: application/json
+
+{
+    "name": "Oppo"
+}
+
+###
+GET  http://localhost:5000/api/filter/6333d160de37f20e07927144
+
+
+###
+GET http://localhost:5000/api/category 
+
+###
+GET http://localhost:5000/api/product
+
+

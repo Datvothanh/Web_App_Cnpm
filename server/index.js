@@ -2,7 +2,10 @@ require("dotenv").config();
 const express = require('express')
 const mongoose = require('mongoose')
 const authRouter = require("./routers/auth");
-const postRouter = require("./routers/post")
+const postRouter = require("./routers/post");
+const postProductRouter = require("./routers/product")
+const postCategoryRouter = require("./routers/category")
+const filterRouter = require("./routers/filter")
 const cors = require('cors') 
 const app = express()
 const connectDB = async () => {
@@ -20,6 +23,9 @@ app.use(express.json());
 app.use(cors())
 app.use("/api/auth", authRouter);
 app.use("/api/post", postRouter);
+app.use("/api/product", postProductRouter);
+app.use("/api/category", postCategoryRouter);
+app.use("/api/filter", filterRouter);
 const port = 5000
 
 app.get('/', (req, res) => res.send('Hello World!'))
