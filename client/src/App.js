@@ -22,6 +22,7 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route exact path='/' element={<ProtectedHome/>}>
         <Route exact path="/home" element={<HomePage />} />
+        <Route exact path='/search/:keyword' element={<HomePage />}  />
         <Route exact path="/category/:id_category" element={<HomeCategoryPage />} />
         </Route>
         <Route

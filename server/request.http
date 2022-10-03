@@ -63,6 +63,8 @@ Content-Type: application/json
     "id_category": "6333d160de37f20e07927141"
 }
 
+###
+GET http://localhost:5000/api/product?keyword=oppo
 
 ###
 POST http://localhost:5000/api/category 
