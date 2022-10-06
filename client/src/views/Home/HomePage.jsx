@@ -11,11 +11,12 @@ const HomePage = (props) => {
 
     let {keyword} = useParams();
     //Contexts
-    const {
-        productState: { products, productsLoading },
+    const {productState: {products , productsLoading}, getProducts} = useContext(ProductContext)
+
     useEffect(() => {getProducts(keyword)})
     
     
+
 
     useEffect(() => {
         getProducts();
