@@ -1,0 +1,13 @@
+.featured {
+    .container {
+        display: flex;
+        justify-content: start;
+
+    }
+    .title {
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}

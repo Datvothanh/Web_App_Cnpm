@@ -1,5 +1,5 @@
 import "./header.module.scss";
-import Anchor from './Anchor';
+import Anchor from "./Anchor";
 // import {
 //     Phone,
 //     Smartwatch,
@@ -9,37 +9,41 @@ import Anchor from './Anchor';
 //     Pc,
 //     Down,
 // } from "../Icons";
-import {CategoryContext} from "../../../contexts/CategoryContext"; 
-import {useContext, useEffect} from 'react'
+import { CategoryContext } from "../../../contexts/CategoryContext";
+import { useContext, useEffect } from "react";
 function HeaderNav() {
+    //Contexts
+    const {
+        categoryState: { categories, categoriesLoading },
+        getCategories,
+    } = useContext(CategoryContext);
 
-     //Contexts
-     const {categoryState: {categories , categoriesLoading}, getCategories} = useContext(CategoryContext)
+    //Start: Get all products
+    useEffect(() => {
+        getCategories();
+    }, []);
 
-     //Start: Get all products
-    useEffect(() => {getCategories()},[])
+    let body = null;
 
-    let body = null
-
-    body=(
+    body = (
         <>
-         <nav>
-            {categories.map(category => {
-                return (
-                    <Anchor
-                        key={category.name}
-                        name={category.name}
-                        path={"category/"+category._id}
-                        // firstIcon={anchor.firstIcon}
-                        // secondIcon={anchor.secondIcon}
-                    />
-                );
-            })}
-        </nav>
+            <nav>
+                {categories.map((category) => {
+                    return (
+                        <Anchor
+                            key={category.name}
+                            name={category.name}
+                            path={"category/" + category._id}
+                            // firstIcon={anchor.firstIcon}
+                            // secondIcon={anchor.secondIcon}
+                        />
+                    );
+                })}
+            </nav>
         </>
-    )
+    );
 
-    return <>{body}</>
+    return <>{body}</>;
 }
 
 export default HeaderNav;

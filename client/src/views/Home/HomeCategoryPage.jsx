@@ -4,8 +4,8 @@ import Spinner from 'react-bootstrap/esm/Spinner';
 import { ProductByCategoryContext } from '../../contexts/ProductByCategoryContext';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import './homePage.scss'
-import SingleProduct from '../../components/product/SingleProduct';
+import styles from './homePage.module.scss'
+import ProductCard from '../../components/product/ProductCard';
 
 const HomeCategoryPage = () => {
 
@@ -14,7 +14,7 @@ const HomeCategoryPage = () => {
     const {productByCategoryState: {productsByCategory , productsByCategoryLoading}, getProductsByCategory} = useContext(ProductByCategoryContext)
     //Start: Get all products
     
-    useEffect(() => {getProductsByCategory(id_category)},[id_category])
+    useEffect(() => {getProductsByCategory(id_category)},[getProductsByCategory, id_category])
 
     let body = null
 
@@ -38,7 +38,7 @@ const HomeCategoryPage = () => {
                 <Row className='row-cols-1 row-cols-md-3 g-4 mx-auto mt-3'>
                     {productsByCategory.map(product => (
                         <Col key={product.id} className='my-2'>
-                            <SingleProduct product={product}/>
+                            <ProductCard product={product}/>
                         </Col>
                     ))}
                 </Row>

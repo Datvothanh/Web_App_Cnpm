@@ -4,7 +4,6 @@ import HomePage from "./views/Home/HomePage";
 import Landing from "./components/layout/Landing";
 import Auth from "./views/Auth";
 import AuthContextProvider from "./contexts/AuthContext";
-import Dashboard from "./views/Dashboard";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import ProtectedHome from "./components/routing/ProtectedHome"
 import ProductContextProvider from "./contexts/ProductContext";
@@ -35,11 +34,7 @@ function App() {
           element={<Auth authRoute="register" />}
         />
         <Route exact path='/' element={<ProtectedRoute/>}>
-        <Route
-          exact
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+        
         </Route>
       </Routes>
      </Router>

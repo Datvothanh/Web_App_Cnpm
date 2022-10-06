@@ -35,13 +35,17 @@
 		height: 64px;
 		nav {
 			@include d-flex;
-			justify-content: space-between;
+			justify-content: start;
 			width: 90%;
 			max-width: 1200px;
 			margin: auto;
 			.item {
 				@include d-flex;
-				gap: 4px;
+				gap: 20px;
+				border-radius: 10px;
+			}
+			.item:hover{
+				background-color: #65a7d3;
 			}
 		}
 	}

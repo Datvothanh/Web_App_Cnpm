@@ -5,11 +5,10 @@
 		align-items: center;
 		flex-wrap: wrap;
 	}
-    .wrap {
-        height: 40px;
-        @include d-flex;
-        .content{
-            justify-content: start;
-        }
+    .container{
+	    width: 100%;
+        max-width: 1200px;
+        margin: auto;
     }
+    
 }

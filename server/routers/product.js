@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 // @desc  Create products
 // @access Private
 router.post("/", async (req, res) => {
-  const { name, price, tinyDes, fullDes , id_category } = req.body;
+  const { img, name, price, tinyDes, fullDes , id_category } = req.body;
 
   //Simple validation
   if (!name)
@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
 
   try {
     const newProduct = new Product({
+      img,
       name,
       price,
       tinyDes,
