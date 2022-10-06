@@ -7,6 +7,7 @@ const Product = require("../models/Product");
 // @route GET api/posts
 // @desc Get posts
 // @access Private
+/*
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find({}).populate(
@@ -18,6 +19,35 @@ router.get("/", async (req, res) => {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
+}); */
+
+
+
+// @route get api 
+// tìm kiếm theo keyword 
+/*
+router.get(
+  "/", asyncHandler(async function (req, res) {
+    const keyword = req.params.keyword ? {
+      name:{
+        $regex: req.query.keyword,
+        $options: "i", 
+      },
+    } : {};
+    const products = await Product.find({...keyword});
+    res.json(products)
+  })
+); */
+
+router.get('/', async (req, res) => {
+  const keyword = req.query.keyword ? {
+    name: {
+      $regex: req.query.keyword ,
+      $options: "i",
+    },
+  }   : {};
+  const products = await Product.find({ ...keyword });
+  res.json({ success: true, products });
 });
 
 // @route POST api/products

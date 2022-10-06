@@ -1,16 +1,21 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect  } from 'react';
 import Spinner from "react-bootstrap/esm/Spinner";
 import { ProductContext } from "../../contexts/ProductContext";
 import Col from "react-bootstrap/Col";
 import styles from "./homePage.module.scss";
 import ProductCard from "../../components/product/ProductCard";
 import Featured from "./FeaturedProduct";
-const HomePage = () => {
+import { useParams } from 'react-router-dom';
+
+const HomePage = (props) => {
+
+    let {keyword} = useParams();
     //Contexts
     const {
         productState: { products, productsLoading },
-        getProducts,
-    } = useContext(ProductContext);
+    useEffect(() => {getProducts(keyword)})
+    
+    
 
     useEffect(() => {
         getProducts();
@@ -31,6 +36,7 @@ const HomePage = () => {
             </>
         );
     } else {
+
         body = (
             <div className={styles.homePage}>
                 <div className={styles.container}>
@@ -39,6 +45,7 @@ const HomePage = () => {
                             <div key={product.id} className="my-2">
                                 <ProductCard product={product} />
                             </div>
+                        
                         ))}
                     </div>
                     <Featured />

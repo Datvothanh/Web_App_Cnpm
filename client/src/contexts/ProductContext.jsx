@@ -15,9 +15,9 @@ const ProductContextProvider = ({children}) => {
 
 
     //Get all posts
-    const getProducts = async() => {
+    const getProducts  = async(keyword=" ") => {
         try {
-            const response = await axios.get(`${apiUrl}/product`)
+            const response = await axios.get(`${apiUrl}/product?keyword=${keyword}`)
             if (response.data.success){
                 dispatch({type:'PRODUCT_LOADED_SUCCESS', payload: response.data.products})
             }
