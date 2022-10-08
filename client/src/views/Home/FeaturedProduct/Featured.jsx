@@ -16,8 +16,8 @@ const Featured = () => {
     return (
         <div className={styles.featured}>
             <div className={styles.container}>
-                <h2 className={styles.title}>Featured Product</h2>
-                <div className="">
+                <div className={styles.title}>Featured Product</div>
+                <div className={styles.blocklist}>
                     {products.map((product) => (
                         <ProductCard product={product} />
                     ))}

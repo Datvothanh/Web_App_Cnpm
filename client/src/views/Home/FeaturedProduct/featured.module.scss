@@ -1,13 +1,22 @@
 .featured {
     .container {
-        display: flex;
-        justify-content: start;
-
+        margin-block: 32px;
+		border-radius: 8px;
+		padding-bottom: 16px;
     }
     .title {
-        display: flex;
-        flex-direction: row;
-        font-size: 20px;
-        font-weight: bold;
+        display: inline;
+        color: #000;
+        font-size: 1.5rem;
+		font-weight: 700;
+    }
+}
+.blocklist{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    .block__gaming {
+        background-color: #25304b;
     }
 }

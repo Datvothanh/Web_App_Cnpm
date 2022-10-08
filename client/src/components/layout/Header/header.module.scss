@@ -1,6 +1,6 @@
 .heading {
 	color: #000;
-	background-color: #82CCFF;
+	background-color: #F3F3F3;
 	font-size: 1.4rem;
 	@mixin d-flex {
 		display: flex;
@@ -43,10 +43,24 @@
 				@include d-flex;
 				gap: 20px;
 				border-radius: 10px;
+				position: relative;
 			}
 			.item:hover{
-				background-color: #65a7d3;
+				color: rgb(243, 120, 120);
 			}
+		}
+		nav .item::after{
+			content: '';
+			display: block;
+			position: absolute;
+			width: 0;
+			height: 2px;
+			background-color: rgb(0, 0, 0);
+			bottom: -10px;
+			transition: all 0.3s ease-in-out;
+		}
+		nav .item:hover::after{
+			width: 100%;
 		}
 	}
 }

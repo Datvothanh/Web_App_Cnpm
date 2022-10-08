@@ -5,22 +5,26 @@ import Col from "react-bootstrap/Col";
 import styles from "./homePage.module.scss";
 import ProductCard from "../../components/product/ProductCard";
 import Featured from "./FeaturedProduct";
+import BigBanner from './BigBanner';
 import { useParams } from 'react-router-dom';
 
 const HomePage = (props) => {
 
+    const data = {
+        
+    }
     let {keyword} = useParams();
     //Contexts
     const {productState: {products , productsLoading}, getProducts} = useContext(ProductContext)
 
-    useEffect(() => {getProducts(keyword)})
+    // useEffect(() => {getProducts(keyword)})
     
     
 
 
     useEffect(() => {
         getProducts();
-    }, [getProducts]);
+    }, []);
 
     let body = null;
 
@@ -41,14 +45,7 @@ const HomePage = (props) => {
         body = (
             <div className={styles.homePage}>
                 <div className={styles.container}>
-                    <div className="">
-                        {products.map((product) => (
-                            <div key={product.id} className="my-2">
-                                <ProductCard product={product} />
-                            </div>
-                        
-                        ))}
-                    </div>
+                    <BigBanner/>
                     <Featured />
                 </div>
             </div>

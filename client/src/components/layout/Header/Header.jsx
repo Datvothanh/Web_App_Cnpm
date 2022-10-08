@@ -1,7 +1,7 @@
-import { Link  } from "react-router-dom";
-import { useState  } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import HeaderNav from "./HeaderNav";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import SearchInput from "./SearchInput";
 import CartButton from "./CartButton";
 import styles from "./header.module.scss";
@@ -9,7 +9,7 @@ import styles from "./header.module.scss";
 import "./header.module.scss";
 function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("cnpmm"));
-    const [keyword , setKeyword] = useState()
+    const [keyword, setKeyword] = useState();
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
@@ -17,31 +17,35 @@ function Header() {
         if (keyword.trim()) {
             navigate(`/search/${keyword}`);
         } else {
-            
         }
     };
 
     const handleLogOut = (e) => {
-        
         localStorage.removeItem("cnpmm");
         setIsLoggedIn(false);
         window.location.reload();
-    }
+    };
     return (
         <div>
-            <header className={styles.heading} style={{ display: isLoggedIn ? 'none' : 'block' }}>
+            <header
+                className={styles.heading}
+                style={{ display: isLoggedIn ? "none" : "block" }}
+            >
                 <div className={styles.top}>
                     <div className={styles.wrap}>
                         <Link to="/">
                             <div className={styles.logo}></div>
                         </Link>
-                        
-                        <Link to="/login">Đăng Nhập</Link>
                         {/* <SearchInput /> */}
-                        <form onSubmit={submitHandler} >
-                        <input type="search" placeholder="Tìm kiếm" onChange={(e) => setKeyword(e.target.value)}>    
-                        </input>
+                        <form onSubmit={submitHandler}>
+                            <input
+                                type="search"
+                                placeholder="Tìm kiếm"
+                                onChange={(e) => setKeyword(e.target.value)}
+                            ></input>
                         </form>
+                        <Link to="/login">Đăng Nhập</Link>
+
                         {/* <Link to="/cart">
                         <CartButton />
                     </Link> */}
@@ -51,13 +55,26 @@ function Header() {
                     <HeaderNav />
                 </div>
             </header>
-            <header className={styles.heading} style={{ display: isLoggedIn ? 'block' : 'none' }}>
+            <header
+                className={styles.heading}
+                style={{ display: isLoggedIn ? "block" : "none" }}
+            >
                 <div className={styles.top}>
                     <div className={styles.wrap}>
                         <Link to="/">
                             <div className={styles.logo}></div>
                         </Link>
-                        <Link onClick={(e) => handleLogOut(e.target.value)}>Đăng Xuất</Link>
+                        {/* <SearchInput /> */}
+                        <form onSubmit={submitHandler}>
+                            <input
+                                type="search"
+                                placeholder="Tìm kiếm"
+                                onChange={(e) => setKeyword(e.target.value)}
+                            ></input>
+                        </form>
+                        <Link onClick={(e) => handleLogOut(e.target.value)}>
+                            Đăng Xuất
+                        </Link>
                         {/* <SearchInput /> */}
 
                         {/* <Link to="/cart">
