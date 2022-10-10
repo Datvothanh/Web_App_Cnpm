@@ -1,4 +1,4 @@
-import { Search } from '../Icons';
+import { Search } from '../../Icons';
 import { useState, useEffect, useRef } from 'react';
 import './header.module.scss';
 function SearchInput(props) {

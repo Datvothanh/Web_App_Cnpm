@@ -14,9 +14,8 @@
 .blocklist{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding-bottom: 30px;
-    .block__gaming {
-        background-color: #25304b;
-    }
+    
 }

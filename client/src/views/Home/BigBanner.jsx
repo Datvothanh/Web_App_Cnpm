@@ -16,7 +16,7 @@ const BigBanner = () => {
         <div className="container__bigbanner">
             <div className="containner__body">
                 <div className="containner__first-item">
-                    <Slider dots={true} slidesToShow={1} slidesToScroll={1} autoplay={true} autoplaySpeed={2000}>
+                    <Slider dots={true} slidesToShow={2} slidesToScroll={2} autoplay={true} autoplaySpeed={2000}>
                         {images.map((src) => (
                             <div className="owl-item" style={{ width: 800 }}>
                                 <div className="item">

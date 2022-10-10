@@ -1,4 +1,4 @@
-import { Cart } from '../Icons';
+import { Cart } from '../../Icons';
 
 function CartButton(props) {
     return (

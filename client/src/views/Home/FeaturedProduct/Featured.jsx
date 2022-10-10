@@ -2,26 +2,49 @@ import styles from "./featured.module.scss";
 import { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../../../contexts/ProductContext";
 import ProductCard from "../../../components/product/ProductCard";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import NextArrow from "../../../components/Slick/NextArrow";
+import PrevArrow from "../../../components/Slick/PrevArrow";
 const Featured = () => {
     const {
         productState: { products, productsLoading },
         getProducts,
     } = useContext(ProductContext);
 
+    const [limit, setLimit] = useState(10);
+    const number = 25;
     useEffect(() => {
         getProducts();
     }, [getProducts]);
 
+    const handleClick = () => {
+        setLimit(number);
+    };
     return (
-        <div className={styles.featured}>
-            <div className={styles.container}>
+        <div
+            className={`${styles.featured} flex gap-6 flex-wrap justify-center`}
+        >
+            <div className="flex gap-6 flex-wrap justify-center">
                 <div className={styles.title}>Featured Product</div>
-                <div className={styles.blocklist}>
+                
+                <Slider
+                    dots={true}
+                    slidesToShow={5}
+                    slidesToScroll={1}
+                    autoplay={false}
+                    nextArrow={<NextArrow />}
+                    prevArrow={<PrevArrow />}
+                >
                     {products.map((product) => (
-                        <ProductCard product={product} />
+                        <div className="w-full" key={product.title}>
+                            <div className="mx-4">
+                                <ProductCard product={product} />
+                            </div>
+                        </div>
                     ))}
-                </div>
+                </Slider>
             </div>
         </div>
     );
