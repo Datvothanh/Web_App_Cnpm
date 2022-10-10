@@ -22,7 +22,7 @@ const HomeCategoryPage = () => {
 
     useEffect(() => {
         getProductsByCategory(id_category);
-    }, [getProductsByCategory, id_category]);
+    }, [ id_category]);
 
     let body = null;
 
