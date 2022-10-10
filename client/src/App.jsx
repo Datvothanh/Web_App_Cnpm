@@ -10,6 +10,7 @@ import ProductContextProvider from "./contexts/ProductContext";
 import CategoryContextProvider from "./contexts/CategoryContext";
 import ProductByCategoryContextProvider from "./contexts/ProductByCategoryContext";
 import HomeCategoryPage from "./views/Home/HomeCategoryPage";
+import Profile from "./views/Authentication/Profile/index"
 function App() {
   return (
     <AuthContextProvider>
@@ -23,6 +24,11 @@ function App() {
         <Route exact path="/home" element={<HomePage />} />
         <Route exact path='/search/:keyword' element={<HomePage />}  />
         <Route exact path="/category/:id_category" element={<HomeCategoryPage />} />
+
+        <Route exact path='/' element={<ProtectedRoute/>}>
+        <Route exact path="/Profile" element={<Profile />} />
+        </Route>
+        
         </Route>
         <Route
           exact
@@ -34,9 +40,6 @@ function App() {
           path="/register"
           element={<Auth authRoute="register" />}
         />
-        <Route exact path='/' element={<ProtectedRoute/>}>
-        
-        </Route>
       </Routes>
      </Router>
       </ProductByCategoryContextProvider>

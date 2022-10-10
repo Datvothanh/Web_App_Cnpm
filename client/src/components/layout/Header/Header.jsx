@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import HeaderNav from "./HeaderNav";
 import { useNavigate } from "react-router-dom";
 import SearchInput from "./SearchInput";
@@ -8,6 +8,7 @@ import styles from "./header.module.scss";
 
 import "./header.module.scss";
 function Header() {
+    
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("cnpmm"));
     const [keyword, setKeyword] = useState();
     const navigate = useNavigate();
@@ -72,6 +73,9 @@ function Header() {
                                 onChange={(e) => setKeyword(e.target.value)}
                             ></input>
                         </form>
+                        <Link to="/Profile">
+                            Profile
+                        </Link>
                         <Link onClick={(e) => handleLogOut(e.target.value)}>
                             Đăng Xuất
                         </Link>
