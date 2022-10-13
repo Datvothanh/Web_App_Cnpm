@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import HeaderNav from "./HeaderNav";
 import { useNavigate } from "react-router-dom";
-import SearchInput from "./SearchInput";
 import CartButton from "./CartButton";
 import styles from "./header.module.scss";
 
@@ -65,7 +64,7 @@ function Header() {
                         <Link to="/">
                             <div className={styles.logo}></div>
                         </Link>
-                        {/* <SearchInput /> */}
+                        
                         <form onSubmit={submitHandler}>
                             <input
                                 type="search"

@@ -1,14 +1,5 @@
 import "./header.module.scss";
 import Anchor from "./Anchor";
-// import {
-//     Phone,
-//     Smartwatch,
-//     Headphone,
-//     Laptop,
-//     Tablet,
-//     Pc,
-//     Down,
-// } from "../Icons";
 import { CategoryContext } from "../../../contexts/CategoryContext";
 import { useContext, useEffect } from "react";
 function HeaderNav() {

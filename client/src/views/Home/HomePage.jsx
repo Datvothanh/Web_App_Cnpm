@@ -1,23 +1,19 @@
 import { useContext, useEffect  } from 'react';
 import Spinner from "react-bootstrap/esm/Spinner";
 import { ProductContext } from "../../contexts/ProductContext";
-import Col from "react-bootstrap/Col";
 import styles from "./homePage.module.scss";
-import ProductCard from "../../components/product/ProductCard";
 import Featured from "./FeaturedProduct";
 import BigBanner from './BigBanner';
 import { useParams } from 'react-router-dom';
 
 const HomePage = (props) => {
 
-    const data = {
-        
-    }
+    
     let {keyword} = useParams();
     //Contexts
     const {productState: {products , productsLoading}, getProducts} = useContext(ProductContext)
 
-    // useEffect(() => {getProducts(keyword)})
+    //useEffect(() => {getProducts(keyword)}, [keyword]);
     
     
 

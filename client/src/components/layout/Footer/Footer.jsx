@@ -30,7 +30,7 @@ function Footer() {
             </div>
             <div className={styles.bottom}>
                 <p>
-                    © 2018. TechZone
+                    © 2022. TechZone
                 </p>
             </div>
         </footer>

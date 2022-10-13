@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./views/Home/HomePage";
 import Landing from "./components/layout/Landing";
 import Auth from "./views/Auth";
+import Search from './views/Search'
 import AuthContextProvider from "./contexts/AuthContext";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import ProtectedHome from "./components/routing/ProtectedHome"
@@ -22,7 +23,7 @@ function App() {
         <Route exact path="/" element={<Landing />} />
         <Route exact path='/' element={<ProtectedHome/>}>
         <Route exact path="/home" element={<HomePage />} />
-        <Route exact path='/search/:keyword' element={<HomePage />}  />
+        <Route exact path='/search/:keyword' element={<Search />}  />
         <Route exact path="/category/:id_category" element={<HomeCategoryPage />} />
 
         <Route exact path='/' element={<ProtectedRoute/>}>
