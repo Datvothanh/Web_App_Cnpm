@@ -10,6 +10,7 @@ const HomePage = (props) => {
 
     
     let {keyword} = useParams();
+ 
     //Contexts
     const {productState: {products , productsLoading}, getProducts} = useContext(ProductContext)
 

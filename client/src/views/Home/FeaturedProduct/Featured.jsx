@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import NextArrow from "../../../components/Slick/NextArrow";
 import PrevArrow from "../../../components/Slick/PrevArrow";
+import { Link, useHref } from "react-router-dom";
 const Featured = () => {
     const {
         productState: { products, productsLoading },
@@ -22,13 +23,13 @@ const Featured = () => {
     const handleClick = () => {
         setLimit(number);
     };
+
     return (
         <div
             className={`${styles.featured} flex gap-6 flex-wrap justify-center`}
         >
             <div className="flex gap-6 flex-wrap justify-center">
                 <div className={styles.title}>Featured Product</div>
-                
                 <Slider
                     dots={true}
                     slidesToShow={5}
@@ -40,7 +41,9 @@ const Featured = () => {
                     {products.map((product) => (
                         <div className="w-full" key={product.title}>
                             <div className="mx-4">
-                                <ProductCard product={product} />
+                                <Link to={`/product/${product._id}`} style={{ textDecoration: 'none' }}>
+                                <ProductCard product={product}/>
+                                </Link>
                             </div>
                         </div>
                     ))}

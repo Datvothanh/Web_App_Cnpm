@@ -169,7 +169,6 @@ const Profile = () => {
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Row>
-                    <Button type="submit">Submit</Button>
                 </Form>
             </div>
         </div>

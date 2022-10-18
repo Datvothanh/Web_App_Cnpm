@@ -1,4 +1,3 @@
-import { Facebook, Youtube } from 'react-bootstrap-icons';
 import styles from './footer.module.scss';
 function Footer() {
     return (

@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import styles from "./homePage.module.scss";
 import blocklist from './FeaturedProduct/featured.module.scss';
 import ProductCard from "../../components/product/ProductCard";
-
+import { Link, useHref } from "react-router-dom";
 const HomeCategoryPage = () => {
     const { id_category } = useParams();
     //Contexts
@@ -44,7 +44,9 @@ const HomeCategoryPage = () => {
                 <div className={styles.container}>
                     <div className={blocklist.blocklist}>
                         {productsByCategory.map((product) => (
-                            <ProductCard product={product} />
+                            <Link to={`/product/${product._id}`} style={{ textDecoration: 'none' }}>
+                                <ProductCard product={product}/>
+                            </Link>
                         ))}
                     </div>
                 </div>

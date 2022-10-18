@@ -12,12 +12,19 @@ import CategoryContextProvider from "./contexts/CategoryContext";
 import ProductByCategoryContextProvider from "./contexts/ProductByCategoryContext";
 import HomeCategoryPage from "./views/Home/HomeCategoryPage";
 import Profile from "./views/Authentication/Profile/index"
+import Detail from "./views/Product";
+import ProductDetailContextProvider from "./contexts/ProductDetailContext"
+import CartContextProvider from "./contexts/CartContext";
+import Cart from "./views/Cart"
 function App() {
   return (
     <AuthContextProvider>
       <ProductContextProvider>
       <CategoryContextProvider>
       <ProductByCategoryContextProvider>
+      <ProductDetailContextProvider>
+      <CartContextProvider>
+        
       <Router>
       <Routes>
         <Route exact path="/" element={<Landing />} />
@@ -25,9 +32,10 @@ function App() {
         <Route exact path="/home" element={<HomePage />} />
         <Route exact path='/search/:keyword' element={<Search />}  />
         <Route exact path="/category/:id_category" element={<HomeCategoryPage />} />
-
+        <Route exact path="/product/:idProduct" element={<Detail />} />
         <Route exact path='/' element={<ProtectedRoute/>}>
         <Route exact path="/Profile" element={<Profile />} />
+        <Route exact path="/Cart" element={<Cart />} />
         </Route>
         
         </Route>
@@ -42,7 +50,9 @@ function App() {
           element={<Auth authRoute="register" />}
         />
       </Routes>
-     </Router>
+      </Router>
+      </CartContextProvider>
+      </ProductDetailContextProvider>
       </ProductByCategoryContextProvider>
      </CategoryContextProvider>
      </ProductContextProvider>

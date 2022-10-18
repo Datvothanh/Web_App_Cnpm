@@ -1,8 +1,6 @@
-import Card from "react-bootstrap/Card";
 import styles from "./productCard.module.scss";
-import { Link } from 'react-router-dom';
 const ProductCard = ({ product: { img, name, price, tinyDes, fullDes } }) => (
-    
+
         <div className={styles.productCard}>
             <div className={styles.wrap}>
                 <div className={styles.image}>
@@ -13,7 +11,9 @@ const ProductCard = ({ product: { img, name, price, tinyDes, fullDes } }) => (
                 <div>{fullDes}</div>
                 <div className={styles.price}>{price}</div>
             </div>
+            
         </div>
+   
     
 );
 

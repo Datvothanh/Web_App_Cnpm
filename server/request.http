@@ -84,4 +84,22 @@ GET http://localhost:5000/api/category
 ###
 GET http://localhost:5000/api/product
 
+###
+GET http://localhost:5000/api/filter/product/6333f0b2b797fcb83c01e576
+
+###
+POST http://localhost:5000/api/addCart 
+Content-Type: application/json
+
+{
+    "userId": "63283b142908f126f36c9305",
+    "id_product":"6333f0b2b797fcb83c01e576"
+}
+
+
+
+###
+GET http://localhost:5000/api/addCart/63283b142908f126f36c9305
+Content-Type: application/json
+
 

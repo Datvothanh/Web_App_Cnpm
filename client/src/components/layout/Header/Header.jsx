@@ -6,6 +6,7 @@ import CartButton from "./CartButton";
 import styles from "./header.module.scss";
 
 import "./header.module.scss";
+import { AuthContext } from "../../../contexts/AuthContext";
 function Header() {
     
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("cnpmm"));
@@ -74,6 +75,9 @@ function Header() {
                         </form>
                         <Link to="/Profile">
                             Profile
+                        </Link>
+                        <Link to={"/Cart"}>
+                            Giỏ hàng
                         </Link>
                         <Link onClick={(e) => handleLogOut(e.target.value)}>
                             Đăng Xuất
