@@ -8,25 +8,6 @@ const  Detail = () => {
     let {idProduct} = useParams();
     const {authState: {authLoading, isAuthenticated , user}} = useContext(AuthContext)
   
-
-
-    const handleClick = (e) => {
-        if(isAuthenticated){
-            e.preventDefault();
-            alert("Đã được thêm vào giỏ hang");
-            const cart = { userId : `${user._id}`, id_product : `${idProduct}` };
-            console.log(cart);
-            fetch("http://localhost:5000/api/addCart", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(cart),
-            }).then(() => {
-              console.log("New cart added");
-            });
-        }
-    };
-
-  
     //Contexts
     const {
         productDetailState: {
@@ -41,6 +22,24 @@ const  Detail = () => {
         getProductDetail(idProduct);
     }, [ idProduct]);
 
+
+    const handleClick = (e) => {
+        if(isAuthenticated){
+            e.preventDefault();
+            alert("Đã được thêm vào giỏ hang");
+            const cart = { userId : `${user._id}`, id_product : `${idProduct}` , quantity : 1 };
+            fetch("http://localhost:5000/api/addCart", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(cart),
+            }).then(() => {
+              console.log("New cart added");
+            });
+        }
+    };
+
+  
+  
     let body = null;
 
     if (productDetailLoading) {
@@ -91,7 +90,9 @@ const  Detail = () => {
                 <div className={styles.price}>{product.price}</div>
                 <h3>Để mua sản phẩm xin hãy đăng nhập !</h3>
             </div>
+            <Button variant="outline-primary">Primary</Button>{' '}
         </div>
+        
          ))
         );
     }

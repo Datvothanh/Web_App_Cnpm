@@ -15,8 +15,6 @@ const HomePage = (props) => {
     const {productState: {products , productsLoading}, getProducts} = useContext(ProductContext)
 
     //useEffect(() => {getProducts(keyword)}, [keyword]);
-    
-    
 
 
     useEffect(() => {

@@ -93,7 +93,8 @@ Content-Type: application/json
 
 {
     "userId": "63283b142908f126f36c9305",
-    "id_product":"6333f0b2b797fcb83c01e576"
+    "id_product":"6333f0b2b797fcb83c01e576",
+    "quantity": 0
 }
 
 
@@ -103,3 +104,31 @@ GET http://localhost:5000/api/addCart/63283b142908f126f36c9305
 Content-Type: application/json
 
 
+###
+Post  http://localhost:5000/api/addCart 
+Content-Type: application/json
+
+{
+    "userId": "63283b142908f126f36c9305",
+    "id_product": "6333f26b44729dfd3f7b46b4",
+    "quantity": 0
+}
+
+
+###
+Post  http://localhost:5000/api/addCart/Up   
+Content-Type: application/json
+
+{
+    "userId": "63283b142908f126f36c9305",
+    "id_product": "6333f26b44729dfd3f7b46b4"
+}
+
+###
+Post  http://localhost:5000/api/addCart/Down 
+Content-Type: application/json
+
+{
+    "userId": "63283b142908f126f36c9305",
+    "id_product": "6333f26b44729dfd3f7b46b4"
+}

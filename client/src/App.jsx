@@ -16,6 +16,7 @@ import Detail from "./views/Product";
 import ProductDetailContextProvider from "./contexts/ProductDetailContext"
 import CartContextProvider from "./contexts/CartContext";
 import Cart from "./views/Cart"
+import Address from "./views/Pay/address";
 function App() {
   return (
     <AuthContextProvider>
@@ -36,6 +37,7 @@ function App() {
         <Route exact path='/' element={<ProtectedRoute/>}>
         <Route exact path="/Profile" element={<Profile />} />
         <Route exact path="/Cart" element={<Cart />} />
+        <Route exact path="/Address" element={<Address />} />
         </Route>
         
         </Route>
