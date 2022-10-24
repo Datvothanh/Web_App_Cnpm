@@ -40,26 +40,23 @@ const  Detail = () => {
     };
 
   
-<<<<<<< HEAD
-  
-=======
     //Contexts
-    const {
-        productDetailState: {
-            productDetail,
-            productDetailLoading,
-        },
-        getProductDetail,
-    } = useContext(ProductDetailContext);
+    // const {
+    //     productDetailState: {
+    //         productDetail,
+    //         productDetailLoading,
+    //     },
+    //     getProductDetail,
+    // } = useContext(ProductDetailContext);
 
-    const {
-        commentState: {
-            comment,
-            commentLoading,
+    // const {
+    //     commentState: {
+    //         comment,
+    //         commentLoading,
 
-        },
-        getComment,
-    } = useContext(CommentContext);
+    //     },
+    //     getComment,
+    // } = useContext(CommentContext);
 
     //Start: Get all products
 
@@ -67,7 +64,7 @@ const  Detail = () => {
         getProductDetail(idProduct);
     }, [ idProduct]);
 
->>>>>>> 075444f810f25eb1c54f3e27d92e6da48a35a842
+
     let body = null;
 
     if (productDetailLoading) {
@@ -118,7 +115,7 @@ const  Detail = () => {
                 <div className={styles.price}>{product.price}</div>
                 <h3>Để mua sản phẩm xin hãy đăng nhập !</h3>
             </div>
-            <Button variant="outline-primary">Primary</Button>{' '}
+            {/* <Button variant="outline-primary">Primary</Button>{' '} */}
         </div>
         
          ))
