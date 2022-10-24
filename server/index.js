@@ -8,6 +8,7 @@ const postCategoryRouter = require("./routers/category")
 const filterRouter = require("./routers/filter")
 const detailRouter = require("./routers/detail")
 const cartRouter = require("./routers/cart")
+const commentRouter = require("./routers/comment")
 const cors = require('cors') 
 const app = express()
 const connectDB = async () => {
@@ -30,6 +31,7 @@ app.use("/api/category", postCategoryRouter);
 app.use("/api/filter", filterRouter);
 app.use("/api/filter/product", detailRouter);
 app.use("/api/addCart", cartRouter);
+app.use("/api/comment", commentRouter);
 const port = 5000
 
 app.get('/', (req, res) => res.send('Hello World!'))

@@ -14,6 +14,7 @@ import HomeCategoryPage from "./views/Home/HomeCategoryPage";
 import Profile from "./views/Authentication/Profile/index"
 import Detail from "./views/Product";
 import ProductDetailContextProvider from "./contexts/ProductDetailContext"
+import CommentContextProvider from "./contexts/CommentContext";
 import CartContextProvider from "./contexts/CartContext";
 import Cart from "./views/Cart"
 import Address from "./views/Pay/address";
@@ -24,6 +25,7 @@ function App() {
       <CategoryContextProvider>
       <ProductByCategoryContextProvider>
       <ProductDetailContextProvider>
+      <CommentContextProvider>
       <CartContextProvider>
         
       <Router>
@@ -54,6 +56,7 @@ function App() {
       </Routes>
       </Router>
       </CartContextProvider>
+      </CommentContextProvider>
       </ProductDetailContextProvider>
       </ProductByCategoryContextProvider>
      </CategoryContextProvider>
