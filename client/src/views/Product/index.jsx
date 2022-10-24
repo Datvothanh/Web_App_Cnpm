@@ -1,5 +1,6 @@
 import { useContext, useEffect,useState } from "react";
 import { ProductDetailContext } from "../../contexts/ProductDetailContext";
+import { CommentContext } from "../../contexts/CommentContext";
 import { Form, useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/esm/Spinner";
 import styles from "./productCard.module.scss";
@@ -39,7 +40,34 @@ const  Detail = () => {
     };
 
   
+<<<<<<< HEAD
   
+=======
+    //Contexts
+    const {
+        productDetailState: {
+            productDetail,
+            productDetailLoading,
+        },
+        getProductDetail,
+    } = useContext(ProductDetailContext);
+
+    const {
+        commentState: {
+            comment,
+            commentLoading,
+
+        },
+        getComment,
+    } = useContext(CommentContext);
+
+    //Start: Get all products
+
+    useEffect(() => {
+        getProductDetail(idProduct);
+    }, [ idProduct]);
+
+>>>>>>> 075444f810f25eb1c54f3e27d92e6da48a35a842
     let body = null;
 
     if (productDetailLoading) {
