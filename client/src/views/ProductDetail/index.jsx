@@ -30,6 +30,8 @@ const Detail = () => {
                 userId: `${user._id}`,
                 id_product: `${idProduct}`,
                 quantity: 1,
+                pay: 0,
+                address:`${user.address}`,
             };
             fetch("http://localhost:5000/api/addCart", {
                 method: "POST",

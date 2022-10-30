@@ -100,7 +100,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:5000/api/addCart/63283b142908f126f36c9305
+GET http://localhost:5000/api/addCart/paying/63283b142908f126f36c9305
 Content-Type: application/json
 
 
@@ -111,7 +111,9 @@ Content-Type: application/json
 {
     "userId": "63283b142908f126f36c9305",
     "id_product": "6333f26b44729dfd3f7b46b4",
-    "quantity": 0
+    "quantity": 1,
+    "pay": 0,
+    "address": "no trang long"
 }
 
 
@@ -132,3 +134,18 @@ Content-Type: application/json
     "userId": "63283b142908f126f36c9305",
     "id_product": "6333f26b44729dfd3f7b46b4"
 }
+
+
+###
+Post  http://localhost:5000/api/addCart/pay
+Content-Type: application/json
+
+{
+    "userId": "63283b142908f126f36c9305",
+    "address": "356/13 no trang long"
+}
+
+
+###
+GET http://localhost:5000/api/auth/all
+Content-Type: application/json

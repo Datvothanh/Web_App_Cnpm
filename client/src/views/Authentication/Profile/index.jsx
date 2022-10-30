@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import styles from "./profile.module.scss";
-import { AuthContext } from "../../../contexts/AuthContext";
+import  {AuthContext}  from "../../../contexts/AuthContext";
 import { useContext } from "react";
 import { FormControl } from "react-bootstrap";
+import {ProductContext} from "../../../contexts/ProductContext";
+import {CartContext} from "../../../contexts/CartContext";
 const Profile = () => {
     const {
         authState: {
-            user: { username, name, city, district },
+            user: { username, name, address , _id},
         },
     } = useContext(AuthContext);
     const [validated, setValidated] = useState(false);
@@ -82,9 +84,8 @@ const Profile = () => {
         { id: 63, name: "TP HCM" },
     ];
     const [postName, setPostName] = useState(name);
-    const [postCity, setPostCity] = useState(city);
-    const [postDistrict, setPostDistrict] = useState(district);
     const [postData, setPostData] = useState();
+    const [carts, setCarts] = useState([]);
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -94,33 +95,44 @@ const Profile = () => {
 
         setValidated(true);
     };
+
+    const {
+        productState: {
+            products,
+            productsLoading,
+        },
+        getProductsAll,} = useContext(ProductContext);
+
+    const {
+        cartState: {
+            cart,
+            cartLoading,
+        },
+        getCartPaying,
+    } = useContext(CartContext);
+
+    useEffect(() => {
+        getCartPaying(_id);
+    }, [ _id]);
+
+    useEffect(() => {
+        getProductsAll();
+    }, [ ]);
+    const array = [];
+    for (var i=0; i < products.length; i++) {
+        for (var j=0; j < cart.length; j++) {
+            if(cart[j].id_product == products[i]._id && cart[j].quantity !== 0 && cart[j].pay == 1){
+               products[i].tinydes = cart[j].quantity;
+               array[j] = products[i];
+            }
+        } 
+    } 
+
     return (
         <div className={styles.profile}>
             <div className={styles.container}>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row className="mb-3">
-                        <Form.Group
-                            as={Col}
-                            md="4"
-                            controlId="validationCustomUsername"
-                        >
-                            <Form.Label>Username</Form.Label>
-                            <InputGroup hasValidation>
-                                <InputGroup.Text id="inputGroupPrepend">
-                                    @
-                                </InputGroup.Text>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Username"
-                                    defaultValue={username}
-                                    aria-describedby="inputGroupPrepend"
-                                    required
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Please choose a username.
-                                </Form.Control.Feedback>
-                            </InputGroup>
-                        </Form.Group>
                         <Form.Group
                             as={Col}
                             md="4"
@@ -130,27 +142,8 @@ const Profile = () => {
                             <Form.Control
                                 required
                                 type="text"
-                                defaultValue={name}
+                                Value={name}
                             />
-                            <Form.Control.Feedback>
-                                Looks good!
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Row>
-                    <Row className="mb-3">
-                        <Form.Group>
-                            <Form.Label>City</Form.Label>
-                            <Form.Control
-                                type="text"
-                                defaultValue={city}
-                            ></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>District</Form.Label>
-                            <Form.Control type="text"  defaultValue={district}></Form.Control>
-                            <Form.Control.Feedback type="invalid">
-                                Please provide a valid district.
-                            </Form.Control.Feedback>
                         </Form.Group>
                     </Row>
                     <Row className="mb-3">
@@ -158,18 +151,19 @@ const Profile = () => {
                             <Form.Label>Address</Form.Label>
                             <Form.Control
                                 type="text"
-                                defaultValue={city}
+                                Value={address}
                             ></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>District</Form.Label>
-                            <Form.Control type="text"  defaultValue={district}></Form.Control>
-                            <Form.Control.Feedback type="invalid">
-                                Please provide a valid district.
-                            </Form.Control.Feedback>
                         </Form.Group>
                     </Row>
                 </Form>
+                <div>
+                Danh sách sản phẩm đang trên đường giao:
+                {array.map((product => (
+                        <>
+                          <h4>{product.name} - {product.tinydes} </h4>
+                        </>  
+                        )))}
+                </div>
             </div>
         </div>
     );

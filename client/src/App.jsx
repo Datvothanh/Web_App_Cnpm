@@ -12,12 +12,16 @@ import CategoryContextProvider from "./contexts/CategoryContext";
 import ProductByCategoryContextProvider from "./contexts/ProductByCategoryContext";
 import HomeCategoryPage from "./views/Home/HomeCategoryPage";
 import Profile from "./views/Authentication/Profile/index"
-import Detail from "./views/Product";
+import Admin from "./views/Authentication/Profile/admin"
+import Detail from "./views/ProductDetail";
 import ProductDetailContextProvider from "./contexts/ProductDetailContext"
 import CommentContextProvider from "./contexts/CommentContext";
 import CartContextProvider from "./contexts/CartContext";
-import Cart from "./views/Cart"
-import Address from "./views/Pay/address";
+import UsersContextProvider from "./contexts/UsersContext";
+import Cart from "./views/Cart/index"
+import Success from "./views/Cart/success"
+import ManageProduct from "./views/Authentication/Profile/manageProduct"
+import ManageUser from "./views/Authentication/Profile/manageUser"
 function App() {
   return (
     <AuthContextProvider>
@@ -27,7 +31,7 @@ function App() {
       <ProductDetailContextProvider>
       <CommentContextProvider>
       <CartContextProvider>
-        
+      <UsersContextProvider>
       <Router>
       <Routes>
         <Route exact path="/" element={<Landing />} />
@@ -38,8 +42,11 @@ function App() {
         <Route exact path="/product/:idProduct" element={<Detail />} />
         <Route exact path='/' element={<ProtectedRoute/>}>
         <Route exact path="/Profile" element={<Profile />} />
+        <Route exact path="/Admin" element={<Admin />} />
         <Route exact path="/Cart" element={<Cart />} />
-        <Route exact path="/Address" element={<Address />} />
+        <Route exact path="/ManageProduct" element={<ManageProduct />} />
+        <Route exact path="/ManageUser" element={<ManageUser />} />
+        <Route exact path="/Success" element={<Success />} />
         </Route>
         
         </Route>
@@ -55,6 +62,7 @@ function App() {
         />
       </Routes>
       </Router>
+      </UsersContextProvider>
       </CartContextProvider>
       </CommentContextProvider>
       </ProductDetailContextProvider>
