@@ -1,0 +1,28 @@
+.leftBox {
+    max-width: 710px;
+    .containerSlider {
+        width: 680px;
+        height: 380px;
+        display: flex;
+        justify-content: center;
+        .containerSliderBody {
+            width: 680px;
+            height: auto; 
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.slick-next {
+    right: 0 !important;
+}
+.slick-prev {
+    left: 0 !important;
+    z-index: 2;
+}
+.slick-dots {
+    bottom: 0 !important;
+}

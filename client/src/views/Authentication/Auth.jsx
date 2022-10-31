@@ -1,9 +1,12 @@
-import LoginForm from "../components/auth/LoginForm";
-import RegisterForm from "../components/auth/RegisterForm";
-import { AuthContext } from "../contexts/AuthContext";
+import styles from './auth.module.scss';
+import LoginForm from "../../components/auth/LoginForm";
+import RegisterForm from "../../components/auth/RegisterForm";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
+
 const Auth = ({ authRoute }) => {
     const {
         authState: { authLoading, isAuthenticated },
@@ -19,7 +22,7 @@ const Auth = ({ authRoute }) => {
     else
         body = (
             <>
-                LearnIt
+                Tech Store
                 {authRoute === "login" && <LoginForm />}
                 {authRoute === "register" && <RegisterForm />}
             </>
@@ -28,9 +31,13 @@ const Auth = ({ authRoute }) => {
         <div className="landing">
             <div className="dark-overlay">
                 <div className="landing-inner">
-                    <h1>LearnIt</h1>
-                    <h4>Keep track of what you are learning</h4>
+                    <h1>TechZone</h1>
                     {body}
+                    <Link to="/home">
+                        <button type="button" class="btn btn-outline-primary">
+                            Home
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
