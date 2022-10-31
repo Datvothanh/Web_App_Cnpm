@@ -7,10 +7,11 @@ import styles from "./homePage.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ProductContext } from "../../contexts/ProductContext";
 import Button from 'react-bootstrap/Button';
+import Success from "./success";
 const  Cart = () => {
 
     const {authState: {authLoading, isAuthenticated , user}} = useContext(AuthContext)
-
+  
     const {
         authState: {
             user: { _id },
@@ -43,6 +44,23 @@ const  Cart = () => {
         getCart(_id);
     }, [ _id]);
 
+    const handleClick = (e) => {
+        if (isAuthenticated) {
+            e.preventDefault();
+            const pay = {
+                userId: `${user._id}`,
+            };
+            fetch("http://localhost:5000/api/addCart/pay", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(pay),
+            }).then(() => {
+                console.log("Pay");
+            });
+            window.location.reload();
+        }
+    };
+
     const handleClickUp = (e) => {
             const cart = { userId : `${user._id}`, id_product : `${e}` };
             fetch("http://localhost:5000/api/addCart/Up", {
@@ -73,13 +91,15 @@ const  Cart = () => {
 
     for (var i=0; i < products.length; i++) {
         for (var j=0; j < cart.length; j++) {
-            if(cart[j].id_product == products[i]._id && cart[j].quantity !== 0){
+            if(cart[j].id_product == products[i]._id && cart[j].quantity !== 0 && cart[j].pay == 0){
                products[i].tinydes = cart[j].quantity;
                array[j] = products[i];
                Price += products[i].price * cart[j].quantity; 
             }
         } 
     } 
+
+  
 
 
     let body = null;
@@ -90,7 +110,7 @@ const  Cart = () => {
                 <Spinner animation="border" variant="info" />
             </div>
         );
-    } else if (cart.length === 0 ) {
+    } else if (Price === 0 ) {
         body = (
             <>
                 <div>Nodata.</div>
@@ -111,11 +131,9 @@ const  Cart = () => {
                         <>
                         <h4>Tổng số tiền phải trả: {Price}</h4>
                         </>
-
-                    
-                <Link to="/Address">
-                    <button>Thanh toán sản phẩm</button>
-                </Link>
+                        <Button variant="primary" onClick={handleClick}>
+                            Xác nhận  
+                        </Button>
                 </div>
             </div>
         );

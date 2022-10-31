@@ -28,8 +28,20 @@ const CartContextProvider = ({children}) => {
         }
     }
 
+     //Get all posts
+     const getCartPaying = async(userId) => {
+        try {
+            const response = await axios.get(`${apiUrl}/addCart/paying/${userId}`)
+            if (response.data.success){
+                dispatch({type:'CART_SUCCESS', payload: response.data.carts})
+            }
+        } catch (error) {
+            dispatch({type:'CART_LOADED_FAIL'})
+        }
+    }
+
     //Product context data
-    const cartContextData = {cartState, getCart}
+    const cartContextData = {cartState, getCart , getCartPaying}
 
     return(
         <CartContext.Provider value = {cartContextData}>

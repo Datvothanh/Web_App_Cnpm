@@ -19,6 +19,20 @@ router.get('/', verifyToken, async(req, res)=>{
 })
 
 
+// @route GET api/posts
+// @desc Get posts
+// @access Private
+router.get("/all", async (req, res) => {
+  try {
+    const users = await User.find({ });
+    res.json({ success: true, users });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+})
+
+
 //@route POST api/auth/register
 //@desc Register user
 //@access Public

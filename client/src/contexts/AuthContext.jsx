@@ -48,6 +48,7 @@ const AuthContextProvider = ({children}) =>{
         }
     }
 
+
      //Register
      const registerUser = async userForm =>{
         try {

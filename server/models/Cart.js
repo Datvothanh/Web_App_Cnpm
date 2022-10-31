@@ -15,6 +15,14 @@ const CartSchema = new Schema({
  quantity: {
   type: Number,
   required: true
+},
+ pay: {
+ type: Number,
+ required: true
+},
+ address: {
+ type: String,
+ required: true
 }
 })
 
