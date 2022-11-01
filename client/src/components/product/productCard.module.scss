@@ -6,10 +6,15 @@
 	background-color: #fff;
 	border-radius: 8px;
 	color: #333333;
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	cursor: pointer;
 	padding: 10px 15px 20px;
-	min-height: 488.2px;
+	min-height: 500px;
+    
+    .title{
+        font-size: 1.5rem;
+        margin-top: 10px;
+    }
     .wrap{
         display: flex;
 		flex-direction: column;
@@ -19,7 +24,10 @@
     .image {
         width: 210px;
         height: 226px;
-        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 250px;
         .img {
             margin-top: 8px;
             transition: margin 700ms;
@@ -35,6 +43,7 @@
     }
     .price {
         color: #d0021c;
+        font-size: 1.4rem;
     }
     .infoProduct {
         p {
