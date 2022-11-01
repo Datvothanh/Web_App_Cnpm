@@ -39,7 +39,7 @@ const RightBox = ({ name, price, discount }) => {
         userId: `${user._id}`,
         id_product: `${idProduct}`,
         quantity: 1,
-        pay: 0,
+        pay: false,
         address: `${user.address}`,
     };
     const handleClickPay = (e) => {

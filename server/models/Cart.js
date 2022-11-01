@@ -17,7 +17,7 @@ const CartSchema = new Schema({
   required: true
 },
  pay: {
- type: Number,
+ type: Boolean,
  required: true
 },
  address: {

@@ -11,7 +11,7 @@ router.post("/" ,async (req, res) => {
     const { userId , id_product , quantity , pay, address} = req.body;
   
     try {
-      const cart = await Cart.findOne({ userId : userId , id_product : id_product , pay: 0});
+      const cart = await Cart.findOne({ userId : userId , id_product : id_product , pay: false});
 
       if (cart !== null ){
         
