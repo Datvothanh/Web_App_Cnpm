@@ -1,6 +1,6 @@
-import styles from './auth.module.scss';
-import LoginForm from "../../components/auth/LoginForm";
-import RegisterForm from "../../components/auth/RegisterForm";
+import styles from "./auth.module.scss";
+import Login from "./Login";
+import Register from "./Register";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import { Navigate, Link } from "react-router-dom";
@@ -11,6 +11,12 @@ const Auth = ({ authRoute }) => {
     const {
         authState: { authLoading, isAuthenticated },
     } = useContext(AuthContext);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+    }
+
     let body;
     if (authLoading)
         body = (
@@ -22,25 +28,20 @@ const Auth = ({ authRoute }) => {
     else
         body = (
             <>
-                Tech Store
-                {authRoute === "login" && <LoginForm />}
-                {authRoute === "register" && <RegisterForm />}
+                {authRoute === "login" && <Login />}
+                {authRoute === "register" && <Register />}
             </>
         );
     return (
-        <div className="landing">
-            <div className="dark-overlay">
-                <div className="landing-inner">
-                    <h1>TechZone</h1>
-                    {body}
-                    <Link to="/home">
-                        <button type="button" class="btn btn-outline-primary">
-                            Home
-                        </button>
-                    </Link>
-                </div>
-            </div>
-        </div>
+    <div className={styles.auth}>
+        <div className={styles.title}>TechZone</div>
+        {body}
+        <Link to="/home">
+            <button className={styles.home}>
+                Home
+            </button>
+        </Link>
+    </div>
     );
 };
 

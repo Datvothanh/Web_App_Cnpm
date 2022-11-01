@@ -5,7 +5,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Header from "../layout/Header/Header";
 import Footer from '../layout/Footer';
 import Admin from "../layout/Header/Admin";
-const ProtectedRoute = () => {
+const ProtectedHome = () => {
     const {
         authState: { authLoading, isAuthenticated , user },
     } = useContext(AuthContext);
@@ -38,4 +38,4 @@ const ProtectedRoute = () => {
     
 };
 
-export default ProtectedRoute;
+export default ProtectedHome;

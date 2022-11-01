@@ -13,6 +13,7 @@ import ProductByCategoryContextProvider from "./contexts/ProductByCategoryContex
 import HomeCategoryPage from "./views/Home/HomeCategoryPage";
 import Profile from "./views/Authentication/Profile/index"
 import ProductDetail from "./views/ProductDetail";
+import Admin from "./views/Authentication/Profile/admin"
 import ProductDetailContextProvider from "./contexts/ProductDetailContext"
 import CommentContextProvider from "./contexts/CommentContext";
 import CartContextProvider from "./contexts/CartContext";
