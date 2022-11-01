@@ -8,7 +8,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { Link, useParams } from "react-router-dom";
 
 const RightBox = ({ name, price, discount }) => {
-    let idProduct = useParams();
+    const {idProduct} = useParams();
 
     const {
         authState: { authLoading, isAuthenticated, user },
@@ -35,16 +35,18 @@ const RightBox = ({ name, price, discount }) => {
         );
     }
 
+    let cart = {
+        userId: `${user._id}`,
+        id_product: `${idProduct}`,
+        quantity: 1,
+        pay: 0,
+        address: `${user.address}`,
+    };
     const handleClickPay = (e) => {
         if (isAuthenticated) {
             e.preventDefault();
-            const cart = {
-                userId: `${user._id}`,
-                id_product: `${idProduct}`,
-                quantity: 1,
-                pay: 0,
-                address: `${user.address}`,
-            };
+            
+            console.log(cart);
             fetch("http://localhost:5000/api/addCart", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

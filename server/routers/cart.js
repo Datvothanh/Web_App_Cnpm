@@ -18,7 +18,7 @@ router.post("/" ,async (req, res) => {
         let updateCart = {
           userId: cart.userId,
           id_product: cart.id_product,
-          quantity : cart.quantity + 1,
+          quantity : cart.quantity,
           pay: cart.pay,
           address: cart.address,
         };
