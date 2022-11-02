@@ -45,6 +45,7 @@ function Header() {
                                 onChange={(e) => setKeyword(e.target.value)}
                             ></input>
                         </form>
+                        <Link to="/register">Đăng Ký</Link>
                         <Link to="/login">Đăng Nhập</Link>
 
                         {/* <Link to="/cart">

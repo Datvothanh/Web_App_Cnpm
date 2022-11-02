@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const multer = require('multer');
 
 const Product = require("../models/Product");
 
@@ -20,6 +20,18 @@ router.get("/", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 }); */
+
+
+const storage = multer.diskStorage({
+  destination: (req , file , callback) => {
+    callback(null , "uploads/")
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname)
+  }
+})
+
+const upload = multer({storage: storage});
 
 
 
@@ -53,30 +65,21 @@ router.get('/', async (req, res) => {
 // @route POST api/products
 // @desc  Create products
 // @access Private
-router.post("/", async (req, res) => {
-  const { img, name, price, tinyDes, fullDes , id_category } = req.body;
+router.post("/", upload.single("img") ,(req, res) => {
+ 
+  const newProduct = new Product({
+    name: req.body.name,
+    price: req.body.price,
+    tinyDes: req.body.tinyDes,
+    fullDes: req.body.fullDes,
+    id_category: req.body.id_category,
+    img: req.file.path
+  });
 
-  //Simple validation
-  if (!name)
-    return res
-      .status(400)
-      .json({ success: false, message: "Name is required" });
-
-  try {
-    const newProduct = new Product({
-      img,
-      name,
-      price,
-      tinyDes,
-      fullDes,
-      id_category,
-    });
-    await newProduct.save();
-    res.json({ success: true, message: "Happy learning!", product: newProduct });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: "Internal server error" });
-  }
+  newProduct
+    .save()
+    .then(()=> res.json("New Product!"))
+    .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
 // // @route POST api/posts

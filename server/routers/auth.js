@@ -38,7 +38,7 @@ router.get("/all", async (req, res) => {
 //@access Public
 
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password , name , address , permission} = req.body;
 
   //Simple validation
   if (!username || !password)
@@ -46,18 +46,31 @@ router.post("/register", async (req, res) => {
       .status(400)
       .json({ success: false, message: "Missing username and/or password" });
 
+  if (!name || !address)
+    return res
+      .status(400)
+      .json({ success: false, message: "Missing informacion personal" });
+
   try {
     // Check for existing user
-    const user = await User.findOne({ username });
+    const user1 = await User.findOne({ username });
 
-    if (user)
+    if (user1)
       return res
         .status(400)
         .json({ success: false, message: "Username already taken" });
 
+    // Check for existing user
+    const user2 = await User.findOne({ name });
+
+    if (user2)
+      return res
+        .status(400)
+        .json({ success: false, message: "Name already taken" });
+
     // All good
     const hashedPassword = await argon2.hash(password);
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, password: hashedPassword , name , address , permission });
     await newUser.save();
 
     // Return token

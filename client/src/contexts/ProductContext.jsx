@@ -27,6 +27,21 @@ const ProductContextProvider = ({children}) => {
     }
 
     //Add Cart
+    const AddProduct  = async() => {
+        try {
+            const response = await axios.get(`${apiUrl}/product`)
+            if (response.data.success){
+                dispatch({type:'ADD_PRODUCT', payload: response.data.newProduct})
+                return response.data
+            }
+        } catch (error) {
+           return error.response.data
+            ? error.response.data
+            : {success: false, message: 'Server error'}
+        }
+    }
+
+    //Add Cart
     const addCart  = async cart => {
         try {
             const response = await axios.get(`${apiUrl}/addCart/`, cart)
@@ -55,7 +70,7 @@ const ProductContextProvider = ({children}) => {
 
 
     //Product context data
-    const productContextData = {productState, getProducts, addCart , getProductsAll}
+    const productContextData = {productState, getProducts, addCart , getProductsAll , AddProduct}
 
     return(
         <ProductContext.Provider value = {productContextData}>
