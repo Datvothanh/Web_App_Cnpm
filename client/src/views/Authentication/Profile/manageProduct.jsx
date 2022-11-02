@@ -11,7 +11,7 @@ import { FormControl } from "react-bootstrap";
 import {ProductContext} from "../../../contexts/ProductContext";
 import {CartContext} from "../../../contexts/CartContext";
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 
 const Admin = () => {
@@ -28,8 +28,12 @@ const Admin = () => {
     let i = 0 ;
     return (
        <div className={styles.container}>
-        <Button variant="outline-primary">Thêm sản phẩm</Button>{' '}
+        <Link to="/AddProduct">
+        <Button>Thêm sản phẩm</Button>
+        </Link>
+
             <Table striped bordered hover>
+                
       <thead>
         <tr>
           <th>#</th>

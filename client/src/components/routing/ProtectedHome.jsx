@@ -16,17 +16,27 @@ const ProtectedHome = () => {
             </div>
         );
 
-    if (user.permission === 0)
-    { 
-        return (
-            <>
-                <Admin/>
-                <Outlet />
-                <Footer />  
-            </>
-        );
-    }
-    else if (user.permission === 1){
+    if(user){
+        if (user.permission === 0)
+        { 
+            return (
+                <>
+                    <Admin/>
+                    <Outlet />
+                    <Footer />  
+                </>
+            );
+        }
+        else if (user.permission === 1){
+            return (
+                <>
+                    <Header />
+                    <Outlet />
+                    <Footer />
+                </>
+            );
+        }
+    }else{
         return (
             <>
                 <Header />
@@ -35,6 +45,7 @@ const ProtectedHome = () => {
             </>
         );
     }
+  
     
 };
 

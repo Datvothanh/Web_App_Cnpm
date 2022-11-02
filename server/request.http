@@ -149,3 +149,18 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/api/auth/all
 Content-Type: application/json
+
+
+
+###
+POST http://localhost:5000/api/product
+Content-Type: application/json
+
+{
+    "name": "Oppo A9",
+    "price": "90",
+    "tinyDes": "tốt",
+    "fullDes": "rất tốt",
+    "id_category": "6333d160de37f20e07927141",
+    "img": "product.png"
+}

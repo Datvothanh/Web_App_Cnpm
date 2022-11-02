@@ -16,7 +16,7 @@ const CartContextProvider = ({children}) => {
 
 
 
-     //Get all posts
+     //Get all carts
      const getCart = async(userId) => {
         try {
             const response = await axios.get(`${apiUrl}/addCart/${userId}`)
