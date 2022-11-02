@@ -1,0 +1,31 @@
+.productDetail {
+    max-width: 1200px;
+    margin: auto;
+
+    .head {
+        max-width: 1200px;
+        margin: 0 auto;
+        border-bottom: 1px solid #e0e0e0;
+        width: 100%;
+        .productName {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+    }
+    .boxMain{
+        max-width: 100%;
+        display: flex;
+        
+        .left {
+            left: 0;
+            width: 60%;
+        }
+        .right {
+            right: 0;
+            width: 40%;
+        }
+    }
+    
+}

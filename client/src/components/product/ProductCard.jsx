@@ -1,5 +1,7 @@
 import styles from "./productCard.module.scss";
-const ProductCard = ({ product: { img, name, price, tinyDes, fullDes } }) => (
+import { numberWithCommas } from '../../utils';
+
+const ProductCard = ({ product: { img, name, price,RAM, ROM, tinyDes, fullDes, discount } }) => (
 
         <div className={styles.productCard}>
             <div className={styles.wrap}>
@@ -7,9 +9,12 @@ const ProductCard = ({ product: { img, name, price, tinyDes, fullDes } }) => (
                     <img src={img} className={styles.img}></img>
                 </div>
                 <p className={styles.title}>{name}</p>
-                <div>{tinyDes}</div>
-                <div>{fullDes}</div>
-                <div className={styles.price}>{price}</div>
+                <div>RAM: {RAM}</div>
+                <div>ROM: {ROM}</div>
+                <div className={styles.price}>{numberWithCommas(price)}
+                    <small className="ml-3">-{discount}%</small>
+                </div>
+                
             </div>
             
         </div>

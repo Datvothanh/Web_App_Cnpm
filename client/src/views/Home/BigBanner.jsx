@@ -1,4 +1,4 @@
-import './bigBanner.scss';
+import styles from './bigBanner.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
@@ -13,12 +13,12 @@ const images = [
 
 const BigBanner = () => {
     return (
-        <div className="container__bigbanner">
-            <div className="containner__body">
-                <div className="containner__first-item">
-                    <Slider dots={true} slidesToShow={2} slidesToScroll={2} autoplay={true} autoplaySpeed={2000}>
+        <div className={styles.container__bigbanner}>
+            <div className={styles.containner__body}>
+                <div className={styles.containner__firstItem}>
+                    <Slider dots={false} slidesToShow={1} slidesToScroll={1} autoplay={true} autoplaySpeed={2000}>
                         {images.map((src) => (
-                            <div className="owl-item" style={{ width: 800 }}>
+                            <div className="owl-item">
                                 <div className="item">
                                     <a href="">
                                         <img src={src} alt="" />
@@ -28,7 +28,7 @@ const BigBanner = () => {
                         ))}
                     </Slider>
                 </div>
-                <div className="containner__second-item">
+                <div className={styles.containner__secondItem}>
                     <div>
                         <a href="">
                             <img src="//cdn.tgdd.vn/2022/05/banner/sticky-intel-390-97-390x97.png" alt="" />

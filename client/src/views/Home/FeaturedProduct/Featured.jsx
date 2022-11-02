@@ -26,9 +26,9 @@ const Featured = () => {
 
     return (
         <div
-            className={`${styles.featured} flex gap-6 flex-wrap justify-center`}
+            className={`${styles.featured} `}
         >
-            <div className="flex gap-6 flex-wrap justify-center">
+            <div className="">
                 <div className={styles.title}>Featured Product</div>
                 <Slider
                     dots={true}

@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./views/Home/HomePage";
 import Landing from "./components/layout/Landing";
-import Auth from "./views/Auth";
+import Auth from "./views/Authentication/Auth";
 import Search from './views/Search'
 import AuthContextProvider from "./contexts/AuthContext";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
@@ -12,8 +12,8 @@ import CategoryContextProvider from "./contexts/CategoryContext";
 import ProductByCategoryContextProvider from "./contexts/ProductByCategoryContext";
 import HomeCategoryPage from "./views/Home/HomeCategoryPage";
 import Profile from "./views/Authentication/Profile/index"
+import ProductDetail from "./views/ProductDetail";
 import Admin from "./views/Authentication/Profile/admin"
-import Detail from "./views/ProductDetail";
 import ProductDetailContextProvider from "./contexts/ProductDetailContext"
 import CommentContextProvider from "./contexts/CommentContext";
 import CartContextProvider from "./contexts/CartContext";
@@ -40,7 +40,7 @@ function App() {
         <Route exact path="/home" element={<HomePage />} />
         <Route exact path='/search/:keyword' element={<Search />}  />
         <Route exact path="/category/:id_category" element={<HomeCategoryPage />} />
-        <Route exact path="/product/:idProduct" element={<Detail />} />
+        <Route exact path="/product/:idProduct" element={<ProductDetail />} />
         <Route exact path='/' element={<ProtectedRoute/>}>
         <Route exact path="/Profile" element={<Profile />} />
         <Route exact path="/Admin" element={<Admin />} />
