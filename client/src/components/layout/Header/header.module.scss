@@ -12,6 +12,9 @@
 		color: #FFFFFF;
 		text-decoration: none;
 	}
+	a:hover{
+		color: rgb(243, 120, 120);
+	}
 	
 	.logo {
 		background-image: url('../../../assets/logo.png');
@@ -30,6 +33,7 @@
 			justify-content: space-between;
 		}
 	}
+	
 	.bottom {
 		display: flex;
 		height: 64px;

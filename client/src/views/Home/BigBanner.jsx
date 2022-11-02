@@ -21,7 +21,7 @@ const BigBanner = () => {
                             <div className="owl-item">
                                 <div className="item">
                                     <a href="">
-                                        <img src={src} alt="" />
+                                        <img src={src} alt="" loading='lazy'/>
                                     </a>
                                 </div>
                             </div>
