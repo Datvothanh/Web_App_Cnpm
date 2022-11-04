@@ -141,7 +141,6 @@ const Admin = () => {
                 <option  value={category._id}>{category.name}</option>
               )))}
         </Form.Select>
-        {id_category}
         <Button variant="success" type="submit">
           Login
         </Button>
