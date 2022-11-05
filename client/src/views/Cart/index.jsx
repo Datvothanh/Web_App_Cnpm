@@ -3,46 +3,41 @@ import { Form, useParams, Link } from "react-router-dom";
 import { Container } from "@mui/system";
 import { CartContext } from "../../contexts/CartContext";
 import Spinner from "react-bootstrap/esm/Spinner";
-import styles from "./homePage.module.scss";
+import styles from "./cart.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ProductContext } from "../../contexts/ProductContext";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import Success from "./success";
-const  Cart = () => {
+import { numberWithCommas } from "../../utils";
+const Cart = () => {
+    const {
+        authState: { authLoading, isAuthenticated, user },
+    } = useContext(AuthContext);
 
-    const {authState: {authLoading, isAuthenticated , user}} = useContext(AuthContext)
-  
     const {
         authState: {
             user: { _id },
         },
     } = useContext(AuthContext);
 
+    const {
+        productState: { products, productsLoading },
+        getProductsAll,
+    } = useContext(ProductContext);
 
     const {
-        productState: {
-            products,
-            productsLoading,
-        },
-        getProductsAll,} = useContext(ProductContext);
-
-    const {
-        cartState: {
-            cart,
-            cartLoading,
-        },
+        cartState: { cart, cartLoading },
         getCart,
     } = useContext(CartContext);
     //Start: Get all products
 
     useEffect(() => {
         getProductsAll();
-    }, [ ]);
-
+    }, []);
 
     useEffect(() => {
         getCart(_id);
-    }, [ _id]);
+    }, [_id]);
 
     const handleClick = (e) => {
         if (isAuthenticated) {
@@ -62,45 +57,45 @@ const  Cart = () => {
     };
 
     const handleClickUp = (e) => {
-            const cart = { userId : `${user._id}`, id_product : `${e}` };
-            fetch("http://localhost:5000/api/addCart/Up", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(cart),
-            }).then(() => {
-              console.log("Up Quantity");
-            });
-            window.location.reload();
+        const cart = { userId: `${user._id}`, id_product: `${e}` };
+        fetch("http://localhost:5000/api/addCart/Up", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cart),
+        }).then(() => {
+            console.log("Increase Quantity");
+        });
+        window.location.reload();
     };
 
     const handleClickDown = (e) => {
-            const cart = { userId : `${user._id}`, id_product : `${e}`  };
-            fetch("http://localhost:5000/api/addCart/Down ", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(cart),
-            }).then(() => {
-              console.log("Down Quantity");
-            });
-            window.location.reload();
+        const cart = { userId: `${user._id}`, id_product: `${e}` };
+        fetch("http://localhost:5000/api/addCart/Down ", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cart),
+        }).then(() => {
+            console.log("Decrease Quantity");
+        });
+        window.location.reload();
     };
 
-
     const array = [];
-    var Price = 0;
+    var total = 0;
 
-    for (var i=0; i < products.length; i++) {
-        for (var j=0; j < cart.length; j++) {
-            if(cart[j].id_product == products[i]._id && cart[j].quantity !== 0 && cart[j].pay == 0){
-               products[i].tinydes = cart[j].quantity;
-               array[j] = products[i];
-               Price += products[i].price * cart[j].quantity; 
+    for (var i = 0; i < products.length; i++) {
+        for (var j = 0; j < cart.length; j++) {
+            if (
+                cart[j].id_product == products[i]._id &&
+                cart[j].quantity !== 0 &&
+                cart[j].pay == 0
+            ) {
+                products[i].tinydes = cart[j].quantity;
+                array[j] = products[i];
+                total += (products[i].price - products[i].price * products[i].discount/100)  * cart[j].quantity;
             }
-        } 
-    } 
-
-  
-
+        }
+    }
 
     let body = null;
 
@@ -110,7 +105,7 @@ const  Cart = () => {
                 <Spinner animation="border" variant="info" />
             </div>
         );
-    } else if (Price === 0 ) {
+    } else if (total === 0) {
         body = (
             <>
                 <div>Nodata.</div>
@@ -118,27 +113,51 @@ const  Cart = () => {
         );
     } else {
         body = (
-            <div className={styles.homePage}>
+            <div className={styles.cart}>
                 <div className={styles.container}>
-                      {array.map((product => (
+                    {array.map((product) => (
                         <>
-                          <h4>ProductName:{product.name}</h4>
-                          <h4>ProductQuantity:{product.tinydes} <button onClick={() => handleClickUp(product._id)}>+</button> <button  onClick={() => handleClickDown(product._id)}>-</button></h4>
-                          <h4>ProductPrice:{product.price}</h4>
-                          <br/>
-                        </>  
-                        )))}
-                        <>
-                        <h4>Tổng số tiền phải trả: {Price}</h4>
+                            <div className={styles.productName}>
+                                {product.name}
+                                <span className={styles.price}>
+                                    {numberWithCommas(
+                                        product.price -
+                                            (product.price * product.discount) /
+                                                100
+                                    )}
+                                </span>
+                            </div>
+                            <div className={styles.quantity}>
+                                Số lượng:
+                                <button
+                                    onClick={() => handleClickDown(product._id)}
+                                >
+                                    -
+                                </button>
+                                {product.tinydes}
+                                <button
+                                    onClick={() => handleClickUp(product._id)}
+                                >
+                                    +
+                                </button>
+                                <span className={styles.originalPrice}>{numberWithCommas(product.price)}</span>
+                            </div>
                         </>
-                        <Button variant="primary" onClick={handleClick}>
-                            Xác nhận  
-                        </Button>
+                    ))}
+
+                    <div className={styles.total}>
+                        Tổng số tiền phải trả: 
+                        <span>{numberWithCommas(total)}</span>
+                    </div>
+
+                    <button onClick={handleClick} className={styles.submit}>
+                        Xác nhận
+                    </button>
                 </div>
             </div>
         );
     }
     return <>{body}</>;
-}
+};
 
 export default Cart;
