@@ -32,6 +32,9 @@ const Admin = () => {
   const [fullDes, setFullDes] = useState("");
   const [id_category, setIdCategory] = useState("");
   const [img, setImg] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [rom, setRom] = useState("");
+  const [ram, setRam] = useState("");
 
   const onChangeFile = e => {
     setImg(e.target.files[0]);
@@ -47,13 +50,18 @@ const Admin = () => {
     formData.append("fullDes", fullDes);
     formData.append("id_category", id_category);
     formData.append("img", img);
+    formData.append("rom", rom);
+    formData.append("ram", ram);
+    formData.append("discount", discount);
 
     setName("");
     setPrice("");
     setTinyDes("");
     setFullDes("");
     setIdCategory("");
-
+    setRom("");
+    setRam("");
+    setDiscount("");
     axios
         .post("http://localhost:5000/api/product" , formData)
         .catch((err) => {
@@ -115,6 +123,36 @@ const Admin = () => {
             onChange={(e) => setFullDes(e.target.value)}
           />
         </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type="text"
+            placeholder="ram"
+            name="ram"
+            required
+            value={ram}
+            onChange={(e) => setRam(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type="text"
+            placeholder="rom"
+            name="rom"
+            required
+            value={rom}
+            onChange={(e) => setRom(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type="number"
+            placeholder="discount"
+            name="discount"
+            required
+            value={discount}
+            onChange={(e) => setDiscount(e.target.value)}
+          />
+        </Form.Group>
         {/* <Form.Group>
           <Form.Control
             type="text"
@@ -142,7 +180,7 @@ const Admin = () => {
               )))}
         </Form.Select>
         <Button variant="success" type="submit">
-          Login
+          Thêm sản phẩm
         </Button>
       </Form>
     </>

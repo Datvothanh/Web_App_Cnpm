@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 
 const storage = multer.diskStorage({
   destination: (req , file , callback) => {
-    callback(null , "uploads/")
+    callback(null , "../client/public/uploads/")
   },
   filename: (req, file, callback) => {
     callback(null, file.originalname)
@@ -73,7 +73,10 @@ router.post("/", upload.single("img") ,(req, res) => {
     tinyDes: req.body.tinyDes,
     fullDes: req.body.fullDes,
     id_category: req.body.id_category,
-    img: req.file.path
+    img: req.file.path,
+    ram: req.body.ram,
+    rom: req.body.rom,
+    discount: req.body.discount
   });
 
   newProduct
