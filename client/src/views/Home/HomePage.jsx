@@ -5,7 +5,6 @@ import styles from "./homePage.module.scss";
 import Featured from "./FeaturedProduct";
 import BigBanner from './BigBanner';
 import { useParams } from 'react-router-dom';
-
 const HomePage = (props) => {
 
     
