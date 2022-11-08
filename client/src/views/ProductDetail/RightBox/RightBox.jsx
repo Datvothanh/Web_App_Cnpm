@@ -36,11 +36,11 @@ const RightBox = ({ name, price, discount }) => {
     }
 
     let cart = {
-        userId: `${user._id}`,
+        userId: `${user?._id}`,
         id_product: `${idProduct}`,
         quantity: 1,
         pay: false,
-        address: `${user.address}`,
+        address: `${user?.address}`,
     };
     const handleClickPay = (e) => {
         if (isAuthenticated) {
