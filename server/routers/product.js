@@ -67,13 +67,16 @@ router.get('/', async (req, res) => {
 // @access Private
 router.post("/", upload.single("img") ,(req, res) => {
  
+  var str = req.file.path;
+  var length = str.length;
+  var path = str.slice(16, length); 
   const newProduct = new Product({
     name: req.body.name,
     price: req.body.price,
     tinyDes: req.body.tinyDes,
     fullDes: req.body.fullDes,
     id_category: req.body.id_category,
-    img: req.file.path,
+    img: path,
     ram: req.body.ram,
     rom: req.body.rom,
     discount: req.body.discount
