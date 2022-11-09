@@ -1,12 +1,13 @@
 import styles from "./productCard.module.scss";
 import { numberWithCommas } from '../../utils';
+import { useState, useEffect } from "react";
 
 const ProductCard = ({ product: { img, name, price,RAM, ROM, tinyDes, fullDes, discount } }) => (
 
         <div className={styles.productCard}>
             <div className={styles.wrap}>
                 <div className={styles.image}>
-                    <img src={img} className={styles.img}></img>
+                    <img src= {img} className={styles.img}></img>
                 </div>
                 <p className={styles.title}>{name}</p>
                 <div>RAM: {RAM}</div>

@@ -41,6 +41,7 @@ const HomePage = (props) => {
                 <div className={styles.container}>
                     <BigBanner/>
                     <Featured />
+                    <Featured />
                 </div>
             </div>
         );

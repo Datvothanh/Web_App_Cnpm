@@ -13,17 +13,12 @@ const Featured = () => {
         productState: { products, productsLoading },
         getProducts,
     } = useContext(ProductContext);
-
-    const [limit, setLimit] = useState(10);
-    const number = 25;
+    
     useEffect(() => {
         getProducts();
     }, [getProducts]);
 
-    const handleClick = () => {
-        setLimit(number);
-    };
-
+    
     return (
         <div
             className={`${styles.featured} `}
@@ -33,7 +28,7 @@ const Featured = () => {
                 <Slider
                     dots={true}
                     slidesToShow={5}
-                    slidesToScroll={1}
+                    slidesToScroll={2}
                     autoplay={false}
                     nextArrow={<NextArrow />}
                     prevArrow={<PrevArrow />}

@@ -50,8 +50,8 @@ const Admin = () => {
     formData.append("fullDes", fullDes);
     formData.append("id_category", id_category);
     formData.append("img", img);
-    formData.append("rom", rom);
-    formData.append("ram", ram);
+    formData.append("ROM", rom);
+    formData.append("RAM", ram);
     formData.append("discount", discount);
 
     setName("");
