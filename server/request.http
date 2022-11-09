@@ -162,5 +162,16 @@ Content-Type: application/json
     "tinyDes": "tốt",
     "fullDes": "rất tốt",
     "id_category": "6333d160de37f20e07927141",
-    "img": "product.png"
+    "img": "product.png",
+    "ram": 10,
+    "rom": 10,
+    "discount": 10
+}
+
+###
+POST  http://localhost:5000/api/product/delete
+Content-Type: application/json
+
+{
+    "_id" : "6333d84d35047bd426014250"
 }

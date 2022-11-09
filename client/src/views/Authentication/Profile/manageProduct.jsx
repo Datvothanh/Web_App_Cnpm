@@ -31,6 +31,10 @@ const Admin = () => {
         <Link to="/AddProduct">
         <Button>Thêm sản phẩm</Button>
         </Link>
+        <h1>................</h1>
+        <Link to="/deleteProduct">
+        <Button>Xóa sản phẩm</Button>
+        </Link>
 
             <Table striped bordered hover>
                 

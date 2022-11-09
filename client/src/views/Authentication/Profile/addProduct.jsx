@@ -50,8 +50,8 @@ const Admin = () => {
     formData.append("fullDes", fullDes);
     formData.append("id_category", id_category);
     formData.append("img", img);
-    formData.append("ROM", rom);
-    formData.append("RAM", ram);
+    formData.append("rom", rom);
+    formData.append("ram", ram);
     formData.append("discount", discount);
 
     setName("");
@@ -75,7 +75,7 @@ const Admin = () => {
   }, [ ]);
   
 
-
+//thay đổi giao diện thêm sản phẩm 
 
 
   
@@ -167,14 +167,11 @@ const Admin = () => {
           <Form.Label>Chọn ảnh sản phẩm</Form.Label>
           <Form.Control type="file"  filename="img" onChange={onChangeFile}/>
         </Form.Group>
-        <Form.Select aria-label="Default select example" 
+        <Form.Select aria-label="Default select example"
             type="text"
             name="id_category" 
-            // value={id_category}
-            onChange={(e) => {
-              const selectedOption = e.target.value;
-              setIdCategory(selectedOption);
-            }}>
+            onChange={(e) => setIdCategory(e.target.value)}>
+              <option>Category</option>
               {categories.map((category => (
                 <option  value={category._id}>{category.name}</option>
               )))}
