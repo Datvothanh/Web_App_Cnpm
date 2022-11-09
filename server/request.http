@@ -167,3 +167,11 @@ Content-Type: application/json
     "rom": 10,
     "discount": 10
 }
+
+###
+POST  http://localhost:5000/api/product/delete
+Content-Type: application/json
+
+{
+    "_id" : "6333d84d35047bd426014250"
+}

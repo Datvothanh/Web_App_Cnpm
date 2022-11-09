@@ -88,6 +88,29 @@ router.post("/", upload.single("img") ,(req, res) => {
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
+//DELETE PRODUCT
+router.post("/delete" , async (req, res) => {
+ 
+  
+  const id = req.body.id;
+  const products = await Product.deleteOne({_id: id});
+ 
+
+  if (!products)
+    return res.status(401).json({
+        success: false,
+        message: "Post not found or user not authorised",
+      });
+    res.json({
+      success: true,
+      message: "Delete success!",
+      
+    });
+  
+
+
+});
+
 // // @route POST api/posts
 // // @desc  Create posts
 // // @access Private

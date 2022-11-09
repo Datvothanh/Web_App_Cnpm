@@ -23,6 +23,7 @@ import Success from "./views/Cart/success"
 import ManageProduct from "./views/Authentication/Profile/manageProduct"
 import ManageUser from "./views/Authentication/Profile/manageUser"
 import AddProduct from "./views/Authentication/Profile/addProduct"
+import DeleteProduct from "./views/Authentication/Profile/deleteProduct"
 function App() {
   return (
     <AuthContextProvider>
@@ -49,6 +50,7 @@ function App() {
         <Route exact path="/ManageUser" element={<ManageUser />} />
         <Route exact path="/Success" element={<Success />} />
         <Route exact path="/AddProduct" element={<AddProduct />} />
+        <Route exact path="/deleteProduct" element={<DeleteProduct />} />
         </Route>
         
         </Route>
