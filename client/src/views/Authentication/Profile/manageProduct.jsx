@@ -26,16 +26,24 @@ const Admin = () => {
             getProductsAll();
     }, [ ]);
     let i = 0 ;
+
+    const handleClick = (e) => {
+        const id = { id: `${e}` };
+        fetch("http://localhost:5000/api/product/delete ", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(id),
+        }).then(() => {
+            console.log("Delete");
+        });
+        window.location.reload();
+    };
+
     return (
        <div className={styles.container}>
         <Link to="/AddProduct">
         <Button>Thêm sản phẩm</Button>
         </Link>
-        <h1>................</h1>
-        <Link to="/deleteProduct">
-        <Button>Xóa sản phẩm</Button>
-        </Link>
-
             <Table striped bordered hover>
                 
       <thead>
@@ -53,6 +61,7 @@ const Admin = () => {
                 <td>{++i}</td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
+                <div><button onClick={() => handleClick(product._id)}>X</button></div>
             </tr>
         </>  
         )))}
