@@ -173,5 +173,5 @@ POST  http://localhost:5000/api/product/delete
 Content-Type: application/json
 
 {
-    "_id" : "6333d84d35047bd426014250"
+    "id" : "636b3b322aad19e4f69969d2"
 }
