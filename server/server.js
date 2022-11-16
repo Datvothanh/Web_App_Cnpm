@@ -1,38 +1,30 @@
-require("dotenv").config();
-const express = require('express')
-const mongoose = require('mongoose')
-const authRouter = require("./routers/auth");
-const postRouter = require("./routers/post");
-const postProductRouter = require("./routers/product")
-const postCategoryRouter = require("./routers/category")
-const filterRouter = require("./routers/filter")
-const detailRouter = require("./routers/detail")
-const cartRouter = require("./routers/cart")
-const commentRouter = require("./routers/comment")
-const cors = require('cors') 
-const app = express()
-const connectDB = async () => {
-    try {
-        await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cnpmm.dgph2sd.mongodb.net/CNPMM?retryWrites=true&w=majority`)
-        console.log('MongoDB connected')
-    } catch (error) {
-        console.log(error.message)
-        process.exit(1)
-    }
-}
+import express from "express";
+import dotenv from "dotenv";
+import connectDatabase from "./config/MongoDb.js";
+import productRoute from "./Routes/ProductRoutes.js";
+import { errorHandler, notFound } from "./Middleware/Errors.js";
+import userRouter from "./Routes/UserRoutes.js";
+import categoryRouter from "./Routes/categoryRoutes.js";
+import orderRouter from "./Routes/orderRoutes.js";
 
-connectDB()
+dotenv.config();
+connectDatabase();
+const app = express();
 app.use(express.json());
-app.use(cors())
-app.use("/api/auth", authRouter);
-app.use("/api/post", postRouter);
-app.use("/api/product", postProductRouter);
-app.use("/api/category", postCategoryRouter);
-app.use("/api/filter", filterRouter);
-app.use("/api/filter/product", detailRouter);
-app.use("/api/addCart", cartRouter);
-app.use("/api/comment", commentRouter);
-const port = 5000
 
-app.get('/', (req, res) => res.send('Hello World!'))
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// API
+app.use("/api/category", categoryRouter);
+app.use("/api/products", productRoute);
+app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
+app.get("/api/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID);
+});
+
+// ERROR HANDLER
+app.use(notFound);
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 1000;
+
+app.listen(PORT, console.log(`server run in port ${PORT}`));
