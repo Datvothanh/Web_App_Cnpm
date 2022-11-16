@@ -17,7 +17,7 @@ import PrivateRouter from "./PrivateRouter";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "./Redux/Actions/ProductActions";
 import { listOrders } from "./Redux/Actions/OrderActions";
-
+import CategoryContextProvider from "./Redux/Context/CategoryContext";
 function App() {
   const dispatch = useDispatch();
 
@@ -34,6 +34,7 @@ function App() {
   return (
     <>
       <Router>
+      <CategoryContextProvider>
         <Switch>
           <PrivateRouter path="/" component={HomeScreen} exact />
           <PrivateRouter path="/products" component={ProductScreen} />
@@ -49,6 +50,7 @@ function App() {
           <Route path="/login" component={Login} />
           <PrivateRouter path="*" component={NotFound} />
         </Switch>
+        </CategoryContextProvider>
       </Router>
     </>
   );

@@ -13,7 +13,7 @@ import {
 import { logout } from "./userActions";
 
 // PRODUCT LIST
-export const listProduct =
+export const listProduct = 
   (keyword = " ", pageNumber = " ") =>
   async (dispatch) => {
     try {

@@ -15,10 +15,15 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import NotFound from "./screens/NotFound";
 import PrivateRouter from "./PrivateRouter";
+import CategoryContextProvider from "./Redux/Context/CategoryContext";
+import ProductContextProvider from "./Redux/Context/ProductContext";
+import CategoryProduct from "./screens/CategoryProduct";
 
 const App = () => {
   return (
     <Router>
+      <CategoryContextProvider>
+      <ProductContextProvider>
       <Switch>
         <Route path="/" component={HomeScreen} exact />
         <Route path="/search/:keyword" component={HomeScreen} exact />
@@ -29,6 +34,7 @@ const App = () => {
           exact
         />
         <Route path="/products/:id" component={SingleProduct} />
+        <Route path="/category/:id" component={CategoryProduct} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRouter path="/profile" component={ProfileScreen} />
@@ -39,6 +45,8 @@ const App = () => {
         <PrivateRouter path="/order/:id" component={OrderScreen} />
         <Route path="*" component={NotFound} />
       </Switch>
+      </ProductContextProvider>
+      </CategoryContextProvider>
     </Router>
   );
 };

@@ -1,37 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import Rating from "./Rating";
-import Pagination from "./pagination";
-import { useDispatch, useSelector } from "react-redux";
-import { listProduct } from "../../Redux/Actions/ProductActions";
-import Loading from "../LoadingError/Loading";
-import Message from "../LoadingError/Error";
-
-const ShopSection = (props) => {
-  const { keyword, pagenumber } = props;
-  const dispatch = useDispatch();
-
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
-
-  useEffect(() => {
-    dispatch(listProduct(keyword, pagenumber));
-  }, [dispatch, keyword, pagenumber]);
+import Rating from "../components/homeComponents/Rating";
+import Header from "../components/Header";
+import { ProductContext } from "../Redux/Context/ProductContext";
+import Category from "../components/homeComponents/Category";
+import ContactInfo from "./../components/homeComponents/ContactInfo";
+import CalltoActionSection from "./../components/homeComponents/CalltoActionSection";
+import Footer from "./../components/Footer";
+const CategoryProduct = ({match}) => {
+  const id = match.params.id;
+  const {
+    productState: {products , loading},
+    getProductsByCategory
+  } = useContext(ProductContext)
+ 
+  useEffect(() => getProductsByCategory(id), [id]);
   return (
     <>
+    <Header/>
+    <Category/>
       <div className="container">
         <div className="section">
           <div className="row">
             <div className="col-lg-12 col-md-12 article">
-              <div className="shopcontainer row">
-                {loading ? (
-                  <div className="mb-5">
-                    <Loading />
-                  </div>
-                ) : error ? (
-                  <Message variant="alert-danger">{error}</Message>
-                ) : (
-                  <>
+            <div className="shopcontainer row">
+            <>
                     {products.map((product) => (
                       <div
                         className="shop col-lg-4 col-md-6 col-sm-6"
@@ -61,21 +55,16 @@ const ShopSection = (props) => {
                       </div>
                     ))}
                   </>
-                )}
-
-                {/* Pagination */}
-                <Pagination
-                  pages={pages}
-                  page={page}
-                  keyword={keyword ? keyword : ""}
-                />
-              </div>
+            </div>         
             </div>
           </div>
         </div>
       </div>
+    <CalltoActionSection />
+    <ContactInfo />
+    <Footer />
     </>
   );
 };
 
-export default ShopSection;
+export default CategoryProduct;

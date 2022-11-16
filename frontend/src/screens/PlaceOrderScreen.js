@@ -22,12 +22,10 @@ const PlaceOrderScreen = ({ history }) => {
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100);
+
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
   cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
+    Number(cart.itemsPrice)
   ).toFixed(2);
 
   const orderCreate = useSelector((state) => state.orderCreate);
@@ -68,7 +66,7 @@ const PlaceOrderScreen = ({ history }) => {
               </div>
               <div className="col-md-8 center">
                 <h5>
-                  <strong>Customer</strong>
+                  <strong>Khách</strong>
                 </h5>
                 <p>{userInfo.name}</p>
                 <p>{userInfo.email}</p>
@@ -85,10 +83,10 @@ const PlaceOrderScreen = ({ history }) => {
               </div>
               <div className="col-md-8 center">
                 <h5>
-                  <strong>Order info</strong>
+                  <strong>Thông tin đơn hàng</strong>
                 </h5>
-                <p>Shipping: {cart.shippingAddress.country}</p>
-                <p>Pay method: {cart.paymentMethod}</p>
+                <p>Vận chuyển tới: {cart.shippingAddress.country}</p>
+                <p>Phương thức: {cart.paymentMethod}</p>
               </div>
             </div>
           </div>
@@ -102,10 +100,10 @@ const PlaceOrderScreen = ({ history }) => {
               </div>
               <div className="col-md-8 center">
                 <h5>
-                  <strong>Deliver to</strong>
+                  <strong>Giao tới</strong>
                 </h5>
                 <p>
-                  Address: {cart.shippingAddress.city},{" "}
+                  Địa chỉ: {cart.shippingAddress.city},{" "}
                   {cart.shippingAddress.address},{" "}
                   {cart.shippingAddress.postalCode}
                 </p>
@@ -117,7 +115,7 @@ const PlaceOrderScreen = ({ history }) => {
         <div className="row order-products justify-content-between">
           <div className="col-lg-8">
             {cart.cartItems.length === 0 ? (
-              <Message variant="alert-info mt-5">Your cart is empty</Message>
+              <Message variant="alert-info mt-5">Giỏ hàng của bạn còn trống</Message>
             ) : (
               <>
                 {cart.cartItems.map((item, index) => (
@@ -131,12 +129,12 @@ const PlaceOrderScreen = ({ history }) => {
                       </Link>
                     </div>
                     <div className="mt-3 mt-md-0 col-md-2 col-6  d-flex align-items-center flex-column justify-content-center ">
-                      <h4>QUANTITY</h4>
+                      <h4>Số lượng</h4>
                       <h6>{item.qty}</h6>
                     </div>
                     <div className="mt-3 mt-md-0 col-md-2 col-6 align-items-end  d-flex flex-column justify-content-center ">
-                      <h4>SUBTOTAL</h4>
-                      <h6>${item.qty * item.price}</h6>
+                      <h4>Tổng cộng</h4>
+                      <h6>{item.qty * item.price} đ</h6>
                     </div>
                   </div>
                 ))}
@@ -149,33 +147,15 @@ const PlaceOrderScreen = ({ history }) => {
               <tbody>
                 <tr>
                   <td>
-                    <strong>Products</strong>
+                    <strong>Tổng giá tiền</strong>
                   </td>
-                  <td>${cart.itemsPrice}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Shipping</strong>
-                  </td>
-                  <td>${cart.shippingPrice}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Tax</strong>
-                  </td>
-                  <td>${cart.taxPrice}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Total</strong>
-                  </td>
-                  <td>${cart.totalPrice}</td>
+                  <td>{cart.totalPrice} đ</td>
                 </tr>
               </tbody>
             </table>
             {cart.cartItems.length === 0 ? null : (
               <button type="submit" onClick={placeOrderHandler}>
-                PLACE ORDER
+                Đặt hàng
               </button>
             )}
             {error && (

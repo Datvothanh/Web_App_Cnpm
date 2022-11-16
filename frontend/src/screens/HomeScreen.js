@@ -3,6 +3,7 @@ import Header from "./../components/Header";
 import ShopSection from "./../components/homeComponents/ShopSection";
 import ContactInfo from "./../components/homeComponents/ContactInfo";
 import CalltoActionSection from "./../components/homeComponents/CalltoActionSection";
+import Category from "../components/homeComponents/Category";
 import Footer from "./../components/Footer";
 
 const HomeScreen = ({ match }) => {
@@ -11,7 +12,8 @@ const HomeScreen = ({ match }) => {
   const pagenumber = match.params.pagenumber;
   return (
     <div>
-      <Header />
+      <Header/>
+      <Category/>
       <ShopSection keyword={keyword} pagenumber={pagenumber} />
       <CalltoActionSection />
       <ContactInfo />

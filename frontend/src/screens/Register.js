@@ -41,7 +41,7 @@ const Register = ({ location, history }) => {
         >
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Tên"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -53,15 +53,15 @@ const Register = ({ location, history }) => {
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit">Register</button>
+          <button type="submit">Đăng ký</button>
           <p>
             <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-              I Have Account <strong>Login</strong>
+              Bạn sẳn sàng để  <strong>Đăng nhập</strong>
             </Link>
           </p>
         </form>

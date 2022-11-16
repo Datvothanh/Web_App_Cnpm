@@ -15,7 +15,7 @@ const Orders = (props) => {
         <>
           {orders.length === 0 ? (
             <div className="col-12 alert alert-info text-center mt-3">
-              No Orders
+              Không có đơn hàng
               <Link
                 className="btn btn-success mx-2 px-3 py-2"
                 to="/"
@@ -23,7 +23,7 @@ const Orders = (props) => {
                   fontSize: "12px",
                 }}
               >
-                START SHOPPING
+                Bắt đầu mua sắm
               </Link>
             </div>
           ) : (
@@ -32,9 +32,9 @@ const Orders = (props) => {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>STATUS</th>
-                    <th>DATE</th>
-                    <th>TOTAL</th>
+                    <th>Tình trạng</th>
+                    <th>Thời gian</th>
+                    <th>Giá</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,13 +50,13 @@ const Orders = (props) => {
                           {order._id}
                         </a>
                       </td>
-                      <td>{order.isPaid ? <>Paid</> : <>Not Paid</>}</td>
+                      <td>{order.isPaid ? <>Đã thanh toán</> : <>Chưa thanh toán</>}</td>
                       <td>
                         {order.isPaid
                           ? moment(order.paidAt).calendar()
                           : moment(order.createdAt).calendar()}
                       </td>
-                      <td>${order.totalPrice}</td>
+                      <td>{order.totalPrice} đ</td>
                     </tr>
                   ))}
                 </tbody>

@@ -1,5 +1,6 @@
 import express from "express";
 import Category from "./../Models/CategoryModel.js";
+import asyncHandler from "express-async-handler";
 const categoryRouter = express.Router();
 
 categoryRouter.get("/", async (req, res) => {

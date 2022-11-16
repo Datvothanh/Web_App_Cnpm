@@ -26,6 +26,19 @@ productRoute.get(
   })
 );
 
+
+//Category
+productRoute.get("/category/:id", async (req, res) => {
+  try {
+    const products = await Product.find({category: req.params.id});
+    res.json({ success: true, products });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+
 // ADMIN GET ALL PRODUCT WITHOUT SEARCH AND PEGINATION
 productRoute.get(
   "/all",
@@ -58,7 +71,7 @@ productRoute.post(
   protect,
   admin,
   asyncHandler(async (req, res) => {
-    const { name, price, description, image, countInStock } = req.body;
+    const { name, price, description, image, countInStock ,category } = req.body;
     const productExist = await Product.findOne({ name });
     if (productExist) {
       res.status(400);
@@ -66,6 +79,7 @@ productRoute.post(
     } else {
       const product = new Product({
         name,
+        category,
         price,
         description,
         image,
@@ -97,7 +111,7 @@ productRoute.post(
       );
       if (alreadyReviewed) {
         res.status(400);
-        throw new Error("Product already Reviewed");
+        throw new Error("Bạn đã nhận xét sản phẩm này rồi!");
       }
       const review = {
         name: req.user.name,
@@ -113,7 +127,7 @@ productRoute.post(
         product.reviews.length;
 
       await product.save();
-      res.status(201).json({ message: "Reviewed Added" });
+      res.status(201).json({ message: "Đã nhận xét thành công" });
     } else {
       res.status(404);
       throw new Error("Product not Found");

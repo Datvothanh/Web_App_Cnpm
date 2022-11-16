@@ -33,7 +33,7 @@ const OrderDetailmain = (props) => {
     <section className="content-main">
       <div className="content-header">
         <Link to="/orders" className="btn btn-dark text-white">
-          Back To Orders
+          Trở lại đơn hàng
         </Link>
       </div>
 
@@ -57,21 +57,6 @@ const OrderDetailmain = (props) => {
                   Order ID: {order._id}
                 </small>
               </div>
-              <div className="col-lg-6 col-md-6 ms-auto d-flex justify-content-end align-items-center">
-                <select
-                  className="form-select d-inline-block"
-                  style={{ maxWidth: "200px" }}
-                >
-                  <option>Change status</option>
-                  <option>Awaiting payment</option>
-                  <option>Confirmed</option>
-                  <option>Shipped</option>
-                  <option>Delivered</option>
-                </select>
-                <Link className="btn btn-success ms-2" to="#">
-                  <i className="fas fa-print"></i>
-                </Link>
-              </div>
             </div>
           </header>
           <div className="card-body">
@@ -89,7 +74,7 @@ const OrderDetailmain = (props) => {
                 <div className="box shadow-sm bg-light">
                   {order.isDelivered ? (
                     <button className="btn btn-success col-12">
-                      DELIVERED AT ({" "}
+                      Đã giao vào lúc ({" "}
                       {moment(order.isDeliveredAt).format("MMM Do YY")})
                     </button>
                   ) : (
@@ -99,7 +84,7 @@ const OrderDetailmain = (props) => {
                         onClick={deliverHandler}
                         className="btn btn-dark col-12"
                       >
-                        MARK AS DELIVERED
+                        Xem như đã giao tới nơi
                       </button>
                     </>
                   )}
