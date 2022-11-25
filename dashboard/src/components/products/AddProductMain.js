@@ -9,13 +9,8 @@ import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
 import {Form} from 'react-bootstrap';
 import {CategoryContext} from "../../Redux/Context/CategoryContext";
+import axios from "axios";
 
-const ToastObjects = {
-  pauseOnFocusLoss: false,
-  draggable: false,
-  pauseOnHover: false,
-  autoClose: 2000,
-};
 const AddProductMain = () => {
   const {
     categoryState: {categories , categoryLoading},
@@ -26,33 +21,65 @@ const AddProductMain = () => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
+  const [img, setImg] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
-  const dispatch = useDispatch();
+  const onChangeFile = e => {
+    setImg(e.target.files[0]);
+  }
 
-  const productCreate = useSelector((state) => state.productCreate);
-  const { loading, error, product } = productCreate;
 
-  useEffect(() => {
-    if (product) {
-      toast.success("Product Added", ToastObjects);
-      dispatch({ type: PRODUCT_CREATE_RESET });
-      setName("");
-      setDescription("");
-      setCountInStock(0);
-      setImage("");
-      setPrice(0);
-      setCategory("");
-    }
-  }, [product, dispatch]);
-
-  const submitHandler = (e) => {
+  const changeOnClick = (e) => {
     e.preventDefault();
-    dispatch(createProduct(name, price, description, image, countInStock, category));
+
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("conutInStock", countInStock);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("img", img);
+
+    setName("");
+    setDescription("");
+    setCountInStock(0);
+    setPrice(0);
+    setCategory("");
+
+    axios
+      .post("http://localhost:4000/api/products", formData)
+      .catch((err) => {
+        console.log(err);
+      });
+
   };
+
+  // const dispatch = useDispatch();
+
+  // const productCreate = useSelector((state) => state.productCreate);
+  // const { loading, error, product } = productCreate;
+
+  // useEffect(() => {
+  //   if (product) {
+  //     toast.success("Product Added", ToastObjects);
+  //     dispatch({ type: PRODUCT_CREATE_RESET });
+  //     setName("");
+  //     setDescription("");
+  //     setCountInStock(0);
+  //     setImage("");
+  //     setPrice(0);
+  //     setCategory("");
+  //   }
+  // }, [product, dispatch]);
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   dispatch(createProduct(name, price, description, image, countInStock, category));
+  // };
+
 
   
 
@@ -61,7 +88,7 @@ const AddProductMain = () => {
       <Toast />
       
       <section className="content-main" style={{ maxWidth: "1200px" }}>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={changeOnClick}>
           <div className="content-header">
             <h2 className="content-title">Thêm sản phẩm</h2>
           </div>
@@ -70,8 +97,6 @@ const AddProductMain = () => {
             <div className="col-xl-8 col-lg-8">
               <div className="card mb-4 shadow-sm">
                 <div className="card-body">
-                  {error && <Message variant="alert-danger">{error}</Message>}
-                  {loading && <Loading />}
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
                       Tên sản phẩm
@@ -133,14 +158,10 @@ const AddProductMain = () => {
                   <div className="mb-4">
                     <label className="form-label">Ảnh</label>
                     <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Enter Image URL"
-                      value={image}
-                      required
-                      onChange={(e) => setImage(e.target.value)}
+                      className="form-control-file"
+                      type="file"
+                      onChange={onChangeFile}
                     />
-                    <input className="form-control mt-3" type="file" />
                   </div>
                   <button type="submit" className="btn btn-primary">
                    Thêm 

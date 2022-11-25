@@ -2,7 +2,7 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import Product from "./../Models/ProductModel.js";
 import { admin, protect } from "./../Middleware/AuthMiddleware.js";
-
+import multer from "multer"
 const productRoute = express.Router();
 
 // GET ALL PRODUCT
@@ -65,37 +65,43 @@ productRoute.get(
 );
 
 
+
+const storage = multer.diskStorage({
+  destination: (req , file , callback) => {
+    callback(null, "../frontend/public/uploads");
+    callback(null, "../dashboard/public/uploads");
+  },
+  filename:(req , file , callback) => {
+    callback(null, file.originalname);
+  }
+})
+
+
+const upload = multer({storage: storage});
+
+
 // CREATE PRODUCT
 productRoute.post(
-  "/",
-  protect,
-  admin,
-  asyncHandler(async (req, res) => {
-    const { name, price, description, image, countInStock ,category } = req.body;
-    const productExist = await Product.findOne({ name });
-    if (productExist) {
-      res.status(400);
-      throw new Error("Product name already exist");
-    } else {
-      const product = new Product({
-        name,
-        category,
-        price,
-        description,
-        image,
-        countInStock,
-        user: req.user._id,
-      });
-      if (product) {
-        const createdproduct = await product.save();
-        res.status(201).json(createdproduct);
-      } else {
-        res.status(400);
-        throw new Error("Invalid product data");
-      }
-    }
-  })
-);
+  "/", upload.single("img") , async (req, res) => {
+    var str = req.file.path;
+    var length = str.length;
+    var path = str.slice(19, length); 
+
+    const newProduct = new Product({
+        name: req.body.name,
+        category: req.body.category,
+        image: path,
+        description: req.body.description,
+        price: req.body.price,
+        countInStock: req.body.countInStock,
+    });
+
+    newProduct
+      .save()
+      .then(() => res.json("Create Product!"))
+      .catch((err) => res.status(404).json(`Error: ${err}`));
+   
+  });
 
 // PRODUCT REVIEW
 productRoute.post(

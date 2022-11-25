@@ -28,11 +28,25 @@ categoryRouter.post("/",async (req, res) => {
       name,
     });
     await newCategory.save();
-    res.json({ success: true, message: "Happy learning!", category: newCategory });
+    res.json({ success: true, message: "Success Creat Category", category: newCategory });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
+});
+
+
+// DELETE CATEGORY
+categoryRouter.delete("/:id",  async (req, res) => {
+    const category = await Category.findById(req.params.id);
+
+    if (category) {
+      await category.remove();
+      res.json({ message: "Category deleted" });
+    } else {
+      res.status(404);
+      throw new Error("Category not Found");
+    }
 });
 
 

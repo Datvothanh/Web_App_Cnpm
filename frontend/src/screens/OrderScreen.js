@@ -90,7 +90,7 @@ const OrderScreen = ({ match }) => {
                   </div>
                 </div>
               </div>
-              {/* 2 */}
+              {/* 2 */}lúc
               <div className="col-lg-4 col-sm-4 mb-lg-4 mb-5 mb-sm-0">
                 <div className="row">
                   <div className="col-md-4 center">
@@ -179,7 +179,7 @@ const OrderScreen = ({ match }) => {
                         </div>
                         <div className="mt-3 mt-md-0 col-md-2 col-6 align-items-end  d-flex flex-column justify-content-center ">
                           <h4>Tổng cộng</h4>
-                          <h6>{item.qty * item.price} đ</h6>
+                          <h6>${item.qty * item.price}</h6>
                         </div>
                       </div>
                     ))}
@@ -193,7 +193,7 @@ const OrderScreen = ({ match }) => {
                       <td>
                         <strong>Tổng giá tiền</strong>
                       </td>
-                      <td>{order.totalPrice} đ</td>
+                      <td>${order.totalPrice}</td>
                   </tbody>
                 </table>
                 {!order.isPaid && (

@@ -134,7 +134,7 @@ const PlaceOrderScreen = ({ history }) => {
                     </div>
                     <div className="mt-3 mt-md-0 col-md-2 col-6 align-items-end  d-flex flex-column justify-content-center ">
                       <h4>Tổng cộng</h4>
-                      <h6>{item.qty * item.price} đ</h6>
+                      <h6>${item.qty * item.price}</h6>
                     </div>
                   </div>
                 ))}
@@ -149,7 +149,7 @@ const PlaceOrderScreen = ({ history }) => {
                   <td>
                     <strong>Tổng giá tiền</strong>
                   </td>
-                  <td>{cart.totalPrice} đ</td>
+                  <td>${cart.totalPrice}</td>
                 </tr>
               </tbody>
             </table>

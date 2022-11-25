@@ -43,9 +43,9 @@ const OrderDetailProducts = (props) => {
                 <div className="info">{item.name}</div>
               </Link>
             </td>
-            <td>{item.price} đ </td>
+            <td>${item.price} </td>
             <td>{item.qty} </td>
-            <td className="text-end"> {item.qty * item.price} đ</td>
+            <td className="text-end"> ${item.qty * item.price}</td>
           </tr>
         ))}
 
@@ -55,7 +55,7 @@ const OrderDetailProducts = (props) => {
               <dl className="dlist">
                 <dt>Tổng cộng:</dt>
                 <dd>
-                  <b className="h5">{order.totalPrice} đ</b>
+                  <b className="h5">${order.totalPrice}</b>
                 </dd>
               </dl>
               <dl className="dlist">
