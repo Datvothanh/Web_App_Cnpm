@@ -157,7 +157,7 @@ const AddProductMain = () => {
                   </Form.Select>
                   <div className="mb-4">
                     <label className="form-label">Ảnh</label>
-                    <input
+                    <Form.Control
                       className="form-control-file"
                       type="file"
                       onChange={onChangeFile}

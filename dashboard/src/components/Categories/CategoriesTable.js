@@ -1,6 +1,7 @@
 import React, { useEffect , useState , useContext } from "react";
 import { Link } from "react-router-dom";
 import { CategoryContext } from "../../Redux/Context/CategoryContext";
+
 const CategoriesTable = () => {
   const {
     categoryState: {categories , categoryLoading},
@@ -27,9 +28,9 @@ const CategoriesTable = () => {
       <table className="table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th className="text-end">Action</th>
+            <th>STT</th>
+            <th>Tên loại sản phẩm</th>
+            <th className="text-end">Xóa</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +38,7 @@ const CategoriesTable = () => {
          <tr>
            <th>{++stt}</th>
            <th>{category.name}</th>
-           <th className="text-end"><button className="btn btn-danger py-3" onClick={() => handleClick(category._id)}>Xóa</button></th>
+           <th className="text-end"><button className="btn btn-danger py-3" onClick={() => handleClick(category._id)}><i class="fa fa-trash" aria-hidden="true"></i></button></th>
          </tr>
         )}
         </tbody>

@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../Redux/Actions/userActions";
+import { BsBoxArrowLeft } from "react-icons/bs";
+import $ from "jquery";
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    $("[data-trigger]").on("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var offcanvas_id = $(this).attr("data-trigger");
+      $(offcanvas_id).toggleClass("show");
+    });
+
+    $(".btn-aside-minimize").on("click", function () {
+      if (window.innerWidth < 768) {
+        $("body").removeClass("aside-mini");
+        $(".navbar-aside").removeClass("show");
+      } else {
+        // minimize sidebar on desktop
+        $("body").toggleClass("aside-mini");
+      }
+    });
+  }, []);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <div>
       <aside className="navbar-aside" id="offcanvas_aside">
@@ -83,8 +109,20 @@ const Sidebar = () => {
                 <i className="icon fas fa-user"></i>
                 <span className="text">Người dùng</span>
               </NavLink>
-            </li>         
+            </li>      
+            <li className="menu-item">
+              <NavLink
+                activeClassName="active"
+                onClick={logoutHandler}
+                className="menu-link"
+                to="/logout"
+              >
+               <i className="fa fa-sign-out fa-2x"></i>
+                <span className="text">Đăng xuất</span>
+              </NavLink>
+            </li>  
           </ul>
+   
           <br />
           <br />
         </nav>

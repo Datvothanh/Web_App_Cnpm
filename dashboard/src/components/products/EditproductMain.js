@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext } from "react";
 import Toast from "./../LoadingError/Toast";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {Form} from 'react-bootstrap';
 import {
   editProduct,
   updateProduct,
@@ -10,7 +11,7 @@ import { PRODUCT_UPDATE_RESET } from "../../Redux/Constants/ProductConstants";
 import { toast } from "react-toastify";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
-
+import {CategoryContext} from "../../Redux/Context/CategoryContext";
 const ToastObjects = {
   pauseOnFocusLoss: false,
   draggable: false,
@@ -19,11 +20,18 @@ const ToastObjects = {
 };
 
 const EditProductMain = (props) => {
+  const {
+    categoryState: {categories , categoryLoading},
+    getCategories
+  } = useContext(CategoryContext)
+
+  useEffect(() => getCategories() , []);
+
   const { productId } = props;
 
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
   const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
 
@@ -50,8 +58,8 @@ const EditProductMain = (props) => {
         setName(product.name);
         setDescription(product.description);
         setCountInStock(product.countInStock);
-        setImage(product.image);
         setPrice(product.price);
+        setCategory(product.category);
       }
     }
   }, [product, dispatch, productId, successUpdate]);
@@ -64,8 +72,8 @@ const EditProductMain = (props) => {
         name,
         price,
         description,
-        image,
         countInStock,
+        category,
       })
     );
   };
@@ -135,6 +143,12 @@ const EditProductMain = (props) => {
                           onChange={(e) => setCountInStock(e.target.value)}
                         />
                       </div>
+                      <Form.Select aria-label="Default select example" type="text" id="product_category" onChange={(e) => setCategory(e.target.value)}>
+                       <option>Chọn loại sản phẩm</option>
+                         {categories.map(category =>
+                             <option value={category._id}>{category.name}</option>
+                           )}
+                      </Form.Select>
                       <div className="mb-4">
                         <label className="form-label">Mô tả</label>
                         <textarea
@@ -145,16 +159,6 @@ const EditProductMain = (props) => {
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
-                      </div>
-                      <div className="mb-4">
-                        <label className="form-label">Ảnh</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value={image}
-                          required
-                          onChange={(e) => setImage(e.target.value)}
-                        />
                       </div>
                     </>
                   )}
