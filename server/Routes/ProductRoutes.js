@@ -59,7 +59,7 @@ productRoute.get(
       res.json(product);
     } else {
       res.status(404);
-      throw new Error("Product not Found");
+      throw new Error("Không tìm thấy sản phẩms");
     }
   })
 );
@@ -98,7 +98,7 @@ productRoute.post(
 
     newProduct
       .save()
-      .then(() => res.json("Create Product!"))
+      .then(() => res.json("Tạo sản phẩm thành công!"))
       .catch((err) => res.status(404).json(`Error: ${err}`));
    
   });
@@ -136,7 +136,7 @@ productRoute.post(
       res.status(201).json({ message: "Đã nhận xét thành công" });
     } else {
       res.status(404);
-      throw new Error("Product not Found");
+      throw new Error("Sản phẩm không tìm thấy");
     }
   })
 );
@@ -150,10 +150,10 @@ productRoute.delete(
     const product = await Product.findById(req.params.id);
     if (product) {
       await product.remove();
-      res.json({ message: "Product deleted" });
+      res.json({ message: "Sản phẩm đã bị xóa" });
     } else {
       res.status(404);
-      throw new Error("Product not Found");
+      throw new Error("Không tìm thấy sản phẩm");
     }
   })
 );
@@ -178,7 +178,7 @@ productRoute.put(
       res.json(updatedProduct);
     } else {
       res.status(404);
-      throw new Error("Product not found");
+      throw new Error("Không tìm thấy sản phẩm");
     }
   })
 );

@@ -90,7 +90,7 @@ const OrderScreen = ({ match }) => {
                   </div>
                 </div>
               </div>
-              {/* 2 */}lúc
+              {/* 2 */}
               <div className="col-lg-4 col-sm-4 mb-lg-4 mb-5 mb-sm-0">
                 <div className="row">
                   <div className="col-md-4 center">

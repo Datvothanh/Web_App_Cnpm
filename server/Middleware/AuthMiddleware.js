@@ -19,12 +19,12 @@ const protect = asyncHandler(async (req, res, next) => {
     } catch (error) {
       console.error(error);
       res.status(401);
-      throw new Error("Not authorized, token failed");
+      throw new Error("Không được ủy quyền, mã thông báo không thành công");
     }
   }
   if (!token) {
     res.status(401);
-    throw new Error("Not authorized, no token");
+    throw new Error("Không được ủy quyền, không có mã thông báo");
   }
 });
 
@@ -33,7 +33,7 @@ const admin = (req, res, next) => {
     next();
   } else {
     res.status(401);
-    throw new Error("Not authorized as an Admin");
+    throw new Error("Không được ủy quyền với tư cách là Quản trị viên");
   }
 };
 export { protect, admin };

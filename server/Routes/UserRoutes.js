@@ -48,7 +48,7 @@ userRouter.get(
       });
     } else {
       res.status(404);
-      throw new Error("User not found");
+      throw new Error("Không tìm thấy người dùng");
     }
   })
 );
@@ -63,7 +63,7 @@ userRouter.post(
 
     if (userExists) {
       res.status(400);
-      throw new Error("User already exists");
+      throw new Error("Không tìm thấy người dùng.");
     }
 
     const user = await User.create({
@@ -82,7 +82,7 @@ userRouter.post(
       });
     } else {
       res.status(400);
-      throw new Error("Invalid User Data");
+      throw new Error("Dữ liệu không khả dụng.");
     }
   })
 );
@@ -112,7 +112,7 @@ userRouter.put(
       });
     } else {
       res.status(404);
-      throw new Error("User not found");
+      throw new Error("Không tìm thấy người dùng.");
     }
   })
 );

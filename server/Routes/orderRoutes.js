@@ -22,7 +22,7 @@ orderRouter.post(
 
     if (orderItems && orderItems.length === 0) {
       res.status(400);
-      throw new Error("No order items");
+      throw new Error("Không có đơn hàng nào.");
       return;
     } else {
       const order = new Order({
@@ -78,7 +78,7 @@ orderRouter.get(
       res.json(order);
     } else {
       res.status(404);
-      throw new Error("Order Not Found");
+      throw new Error("Không tìm thấy đơn hàng");
     }
   })
 );
@@ -104,7 +104,7 @@ orderRouter.put(
       res.json(updatedOrder);
     } else {
       res.status(404);
-      throw new Error("Order Not Found");
+      throw new Error("Không tìm thấy đơn hàng");
     }
   })
 );
@@ -124,7 +124,7 @@ orderRouter.put(
       res.json(updatedOrder);
     } else {
       res.status(404);
-      throw new Error("Order Not Found");
+      throw new Error("Không tìm thấy đơn hàng");
     }
   })
 );

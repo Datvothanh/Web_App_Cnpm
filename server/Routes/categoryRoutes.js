@@ -21,14 +21,14 @@ categoryRouter.post("/",async (req, res) => {
   if (!name)
     return res
       .status(400)
-      .json({ success: false, message: "Name is required" });
+      .json({ success: false, message: "Tên loại sản phẩm chưa nhập" });
 
   try {
     const newCategory = new Category({
       name,
     });
     await newCategory.save();
-    res.json({ success: true, message: "Success Creat Category", category: newCategory });
+    res.json({ success: true, message: "Tạo loại sản phẩm thành công", category: newCategory });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
@@ -42,10 +42,10 @@ categoryRouter.delete("/:id",  async (req, res) => {
 
     if (category) {
       await category.remove();
-      res.json({ message: "Category deleted" });
+      res.json({ message: "Đã xóa loại sản phẩm" });
     } else {
       res.status(404);
-      throw new Error("Category not Found");
+      throw new Error("Không tìm thấy loại sản phẩm");
     }
 });
 
